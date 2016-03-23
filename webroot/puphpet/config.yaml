@@ -35,7 +35,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
             vflsf_7zpeeqxj4vsr:
-                source: 'D:\\AppDev\\rpgms\\webroot\\www'
+                source: 'C:\\AppDev\\rpgms\\webroot\\www'
                 target: /usr/share/nginx/html
                 sync_type: rsync
                 smb:
