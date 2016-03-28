@@ -36,6 +36,13 @@ class World
     private $description;
 
 
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="User", mappedBy="id")
+     */
+    private $gm;
+    
     /**
      * Get id
      *

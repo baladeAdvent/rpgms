@@ -13,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends BaseUser
 {
     /**
+     * @ORM\OneToMany(targetEntity="World", mappedBy="gm")
+     */
+    private $gm_worlds;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PlayerCharacter", mappedBy="player")
+     */
+    private $characters;
+    
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")

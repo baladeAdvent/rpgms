@@ -49,6 +49,14 @@ class PlayerCharacter
      */
     private $description;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="characters")
+     * @ORM\JoinColumn(name="User",referencedColumnName="id")
+     * @Assert\NotBlank()
+     */
+    private $player;
+
 
     /**
      * Get id
