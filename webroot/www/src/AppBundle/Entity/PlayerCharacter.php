@@ -57,6 +57,8 @@ class PlayerCharacter
      */
     private $player;
 
+    // Add attribute for world
+    // One character -> One world
 
     /**
      * Get id

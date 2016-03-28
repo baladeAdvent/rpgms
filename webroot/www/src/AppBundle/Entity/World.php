@@ -39,9 +39,14 @@ class World
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="User", mappedBy="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="gm_worlds")
+     * @ORM\JoinColumn(name="User",referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $gm;
+    
+    // Add attribute for characters
+    // One world -> Many Characters
     
     /**
      * Get id
