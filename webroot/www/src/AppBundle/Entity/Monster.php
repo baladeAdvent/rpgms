@@ -52,9 +52,9 @@ class Monster
     /**
      * @var int
      *
-     * @ORM\Column(name="w_id", type="integer")
+     * @ORM\Column(name="worldid", type="integer")
      */
-    private $wId;
+    private $worldId;
 
 
     /**
