@@ -5,7 +5,7 @@ vagrantfile:
             local:
                 box: puphpet/centos65-x64
                 box_url: puphpet/centos65-x64
-                box_version: 'false'
+                box_version: '0'
                 chosen_virtualizer: virtualbox
                 virtualizers:
                     virtualbox:
@@ -19,11 +19,15 @@ vagrantfile:
                         check_guest_tools: 0
                         update_guest_tools: 0
                 machines:
-                    vflm_rkv9f5jdq1m8:
+                    vflm_af6206sm22eq:
                         id: rpgdev
+                        hostname: rpgdev.computer
                         network:
                             private_network: 192.168.99.90
-                        hostname: rpgdev.computer
+                            forwarded_port:
+                                vflmnfp_xo9h3ucfgo63:
+                                    host: '9629'
+                                    guest: '22'
                         memory: '1024'
                         cpus: '1'
         provision:
@@ -34,7 +38,7 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_7zpeeqxj4vsr:
+            vflsf_q08h8g9hiud2:
                 source: 'C:\\AppDev\\rpgms\\webroot\\www'
                 target: /usr/share/nginx/html
                 sync_type: rsync
@@ -78,13 +82,12 @@ vagrantfile:
         https: ''
         ftp: ''
         no_proxy: ''
-        enabled: ''
 server:
     install: '1'
     packages:
         - htop
-        - nano
         - vim-common
+        - nano
 users_groups:
     install: '1'
     groups: {  }
@@ -92,7 +95,7 @@ users_groups:
 locale:
     install: '1'
     settings:
-        default_locale: ''
+        default_locale: en_US.UTF-8
         locales:
             - en_GB.UTF-8
             - en_US.UTF-8
@@ -100,9 +103,7 @@ locale:
 firewall:
     install: '1'
     rules:
-        fr_62huz6xuhwn7:
-            port:
-                - '9200'
+        fr_cb5zgnjbh2v3:
             priority: '100'
             proto: tcp
             action: accept
@@ -121,7 +122,7 @@ nginx:
         names_hash_bucket_size: 128
     upstreams: {  }
     vhosts:
-        nxv_9mxbv5jnu8hu:
+        nxv_alx0514trzrf:
             server_name: rpg.dev
             server_aliases:
                 - www.rpg.dev
@@ -141,10 +142,8 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_knbhh0rqrm0o:
+                nxvl_744afbvjy0xr:
                     location: /
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
@@ -154,10 +153,8 @@ nginx:
                     fastcgi_split_path: ''
                     proxy: ''
                     proxy_redirect: ''
-                nxvl_h1kcjmj0dcp7:
+                nxvl_jsl1slqormmd:
                     location: '~ \.php$'
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
@@ -187,7 +184,7 @@ apache:
         - proxy_fcgi
         - rewrite
     vhosts:
-        av_gp1qf9krjetz:
+        av_u0iui6bsujmh:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -206,7 +203,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_8e0st0ys2yen:
+                avd_tdyac0lbf7cy:
                     path: /var/www/awesome
                     options:
                         - Indexes
@@ -218,12 +215,17 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_xi6zp0zpc54c:
+                        avdfm_tyjpjfy57ely:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
                             provider: filesmatch
                     provider: directory
+letsencrypt:
+    install: '1'
+    settings:
+        email: ''
+    domains: {  }
 php:
     install: '1'
     settings:
@@ -249,7 +251,7 @@ php:
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
-        phpfp_d407l80sdqdl:
+        phpfp_wsaw18azh1ow:
             ini:
                 prefix: www
                 listen: '127.0.0.1:9000'
@@ -285,17 +287,21 @@ xhprof:
     install: '0'
 wpcli:
     install: '0'
-    version: v0.19.0
+    version: v0.21.1
 drush:
     install: '0'
-    version: 6.3.0
+    version: 8.0.5
 ruby:
     install: '1'
     versions:
-        rv_t9ot0medgqrh:
+        rv_3xwkscgkw3tm:
             default: '1'
             bundler: '1'
-            version: 1.9.3
+            version: 2.2.2
+            gems:
+                - deep_merge@1.0.1
+                - activesupport@4.2.6
+                - vine@0.2
 python:
     install: '1'
     packages: {  }
@@ -328,15 +334,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_0zndepzyse4q:
+        mariadbnu_34vfdjc6mq29:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_zl89vzsh72sr:
+        mariadbnd_626n320v8qj4:
             name: dbname
             sql: ''
     grants:
-        mariadbng_f5t0blsu8azq:
+        mariadbng_tlzfa6qfwrvb:
             user: dbuser
             table: '*.*'
             privileges:
@@ -348,12 +354,20 @@ mysql:
         root_password: '123456'
         override_options: {  }
     adminer: '1'
-    users: {  }
+    users:
+        mysqlnu_8yxdgtjbgckg:
+            name: dbuser
+            password: '123'
     databases:
-        mysqlnd_xq7s0c6i9dmp:
+        mysqlnd_ngzrifd72kgl:
             name: symfony
             sql: ''
-    grants: {  }
+    grants:
+        mysqlng_7gko8y23zw23:
+            user: dbuser
+            table: '*.*'
+            privileges:
+                - ALL
 postgresql:
     install: '0'
     settings:
@@ -411,9 +425,11 @@ rabbitmq:
 elastic_search:
     install: '0'
     settings:
-        version: 2.1.0
+        version: 2.3.1
         java_install: true
-    instances: {  }
+    instances:
+        esi_jce60eb0njb8:
+            name: es-01
 solr:
     install: '0'
     settings:
