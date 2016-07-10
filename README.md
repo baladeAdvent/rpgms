@@ -29,3 +29,17 @@ Copy Symfony.conf over to the /etc/nginx/sites-enabled folder
     $ cd /etc/nginx/sites-enabled
     $ sudo rm -rf {notsymfonyor_}.conf
     $ sudo service nginx restart
+
+"There was an error when attempting to rsync a synced folder"
+    
+    Edit $VAGRANT_HOME\embedded\gems\gems\vagrant-1.8.0\plugins\synced_folders\rsync\helper.rb
+
+    Remove the following codes (line 77~79):
+
+    "-o ControlMaster=auto " +
+    "-o ControlPath=#{controlpath} " +
+    "-o ControlPersist=10m " +
+
+"SSH: * private_key_path file must exist: P://.vagrant.d/insecure_private_key"
+
+    delete the id_rsa files in puphpet\files\dot\ssh
