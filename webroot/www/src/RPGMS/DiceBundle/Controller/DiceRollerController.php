@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class DiceRollerController extends Controller
 {
     /**
-     * @Route("", name="Homepage")
+     * @Route("/dice", name="Dice Roller")
      */
-    public function indexAction()
+    public function rollerAction()
     {
-        return new Response('RPGMS Index');
+        return new Response('Dice Roller');
         #return $this->render('RPGMSDiceBundle:Default:index.html.twig');
     }
 }

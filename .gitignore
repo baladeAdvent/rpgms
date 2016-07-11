@@ -1,1 +1,4 @@
 .vagrant
+/webroot/puphpet/files/dot/ssh/id_rsa.ppk
+/webroot/puphpet/files/dot/ssh/id_rsa.pub
+/webroot/puphpet/files/dot/ssh/id_rsa
