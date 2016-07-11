@@ -11,7 +11,7 @@ Init Vagrant:
 
 Symfony Install:
 
-    $ composer create-project symfony/framework-standard-edition my_project_name "2.8.*"
+    $ COMPOSER_PROCESS_TIMEOUT=2000 composer install
 
 
 Edit Hosts File: C:/Windows/System32/drivers/etc/hosts & add these two lines:
@@ -19,9 +19,16 @@ Edit Hosts File: C:/Windows/System32/drivers/etc/hosts & add these two lines:
     192.168.99.90    rpg.dev www.rpg.dev
     192.168.99.90    rpgdev.computer www.rpgdev.computer
 
+
+Setup Permissions:
+
+    $ sudo chmod 0777 /usr/share/nginx/html --recursive
+
+
 FastCGI fix
 
     fastcgi_pass 127.0.0.1:9000;
+
 
 Copy Symfony.conf over to the /etc/nginx/sites-enabled folder
 
@@ -29,6 +36,7 @@ Copy Symfony.conf over to the /etc/nginx/sites-enabled folder
     $ cd /etc/nginx/sites-enabled
     $ sudo rm -rf {notsymfonyor_}.conf
     $ sudo service nginx restart
+
 
 "There was an error when attempting to rsync a synced folder"
     
@@ -39,6 +47,7 @@ Copy Symfony.conf over to the /etc/nginx/sites-enabled folder
     "-o ControlMaster=auto " +
     "-o ControlPath=#{controlpath} " +
     "-o ControlPersist=10m " +
+
 
 "SSH: * private_key_path file must exist: P://.vagrant.d/insecure_private_key"
 
