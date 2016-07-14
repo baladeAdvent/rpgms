@@ -3,6 +3,14 @@ Pet project to setup a rich system for allowing groups to set up worlds and char
 
 ~baladeAdvent
 
+Generate Entities:
+    
+    php bin/console doctrine:generate:entity
+
+Generate Getters/Setters:
+
+    php bin/console doctrine:generate:entities AppBundle/Entity/Product
+
 Init Vagrant:
 
     vagrant init puphpet/centos65-x64

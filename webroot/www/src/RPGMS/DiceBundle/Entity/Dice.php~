@@ -125,3 +125,4 @@ class Dice
         return $this->maxRange;
     }
 }
+

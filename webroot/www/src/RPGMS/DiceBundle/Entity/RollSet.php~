@@ -3,15 +3,17 @@
 namespace RPGMS\DiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * RNGRolls
+ * RollSet
  *
- * @ORM\Table(name="rng_rolls")
- * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\RNGRollsRepository")
+ * @ORM\Table(name="roll_set")
+ * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\RollSetRepository")
  */
-class RNGRolls
+class RollSet
 {
+
     /**
      * @var int
      *
@@ -22,25 +24,16 @@ class RNGRolls
     private $id;
 
     /**
+     *  @ORM\OneToMany(targetEntity="Product", mappedBy="rollset")
+     */
+    private $rolls;
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="world", type="integer")
+     * @ORM\Column(name="w_id", type="integer")
      */
-    private $world;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="dice", type="string", length=255)
-     */
-    private $dice;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="results", type="string", length=255)
-     */
-    private $results;
+    private $wId;
 
     /**
      * @var string
@@ -52,7 +45,7 @@ class RNGRolls
     /**
      * @var int
      *
-     * @ORM\Column(name="bonus", type="integer", nulable=true)
+     * @ORM\Column(name="bonus", type="integer", nullable=true)
      */
     private $bonus;
 
@@ -70,6 +63,10 @@ class RNGRolls
      */
     private $session;
 
+    public function __construct()
+    {
+        $this->rolls = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -82,99 +79,51 @@ class RNGRolls
     }
 
     /**
-     * Set world
+     * Set rollDice
      *
-     * @param integer $world
+     * @param string $rollDice
      *
-     * @return RNGRolls
+     * @return RollSet
      */
-    public function setWorld($world)
+    public function setRollDice($rollDice)
     {
-        $this->world = $world;
+        $this->rollDice = $rollDice;
 
         return $this;
     }
 
     /**
-     * Get world
+     * Get rollDice
+     *
+     * @return string
+     */
+    public function getRollDice()
+    {
+        return $this->rollDice;
+    }
+
+    /**
+     * Set wId
+     *
+     * @param integer $wId
+     *
+     * @return RollSet
+     */
+    public function setWId($wId)
+    {
+        $this->wId = $wId;
+
+        return $this;
+    }
+
+    /**
+     * Get wId
      *
      * @return int
      */
-    public function getWorld()
+    public function getWId()
     {
-        return $this->world;
-    }
-
-    /**
-     * Set dice
-     *
-     * @param string $dice
-     *
-     * @return RNGRolls
-     */
-    public function setDice($dice)
-    {
-        $this->dice = $dice;
-
-        return $this;
-    }
-
-    /**
-     * Get dice
-     *
-     * @return string
-     */
-    public function getDice()
-    {
-        return $this->dice;
-    }
-
-    /**
-     * Set results
-     *
-     * @param string $results
-     *
-     * @return RNGRolls
-     */
-    public function setResults($results)
-    {
-        $this->results = $results;
-
-        return $this;
-    }
-
-    /**
-     * Get results
-     *
-     * @return string
-     */
-    public function getResults()
-    {
-        return $this->results;
-    }
-
-    /**
-     * Set action
-     *
-     * @param string $action
-     *
-     * @return RNGRolls
-     */
-    public function setAction($action)
-    {
-        $this->action = $action;
-
-        return $this;
-    }
-
-    /**
-     * Get action
-     *
-     * @return string
-     */
-    public function getAction()
-    {
-        return $this->action;
+        return $this->wId;
     }
 
     /**
@@ -182,7 +131,7 @@ class RNGRolls
      *
      * @param integer $bonus
      *
-     * @return RNGRolls
+     * @return RollSet
      */
     public function setBonus($bonus)
     {
@@ -206,7 +155,7 @@ class RNGRolls
      *
      * @param integer $penalty
      *
-     * @return RNGRolls
+     * @return RollSet
      */
     public function setPenalty($penalty)
     {
@@ -226,11 +175,35 @@ class RNGRolls
     }
 
     /**
+     * Set action
+     *
+     * @param string $action
+     *
+     * @return RollSet
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
      * Set session
      *
      * @param integer $session
      *
-     * @return RNGRolls
+     * @return RollSet
      */
     public function setSession($session)
     {
@@ -242,11 +215,11 @@ class RNGRolls
     /**
      * Get session
      *
-     * @return int
+     * @return integer
      */
     public function getSession()
     {
         return $this->session;
     }
-}
 
+}
