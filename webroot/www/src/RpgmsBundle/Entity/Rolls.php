@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Rolls
  *
  * @ORM\Table(name="rolls")
- * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\RollsRepository")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollsRepository")
  */
 class Rolls
 {

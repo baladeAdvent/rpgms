@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Tests\Controller;
+namespace RpgmsBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,4 +1,4 @@
 services:
-#    rpgms_dice.example:
-#        class: RPGMS\DiceBundle\Example
+#    rpgms_rpgms.example:
+#        class: RpgmsBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]

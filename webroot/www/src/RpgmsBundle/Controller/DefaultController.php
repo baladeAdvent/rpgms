@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Controller;
+namespace RpgmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        #return new Response('RPGMS Index');
-        return $this->render('RPGMSDiceBundle:Default:index.html.twig');
+        return new Response('RPGMS Index');
+        #return $this->render('RpgmsBundle:Default:index.html.twig');
     }
 }

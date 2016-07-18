@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * RollSet
  *
  * @ORM\Table(name="roll_set")
- * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\RollSetRepository")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
 {
@@ -226,11 +226,11 @@ class RollSet
     /**
      * Add roll
      *
-     * @param \RPGMS\DiceBundle\Entity\Product $roll
+     * @param \RpgmsBundle\Entity\Product $roll
      *
      * @return RollSet
      */
-    public function addRoll(\RPGMS\DiceBundle\Entity\Product $roll)
+    public function addRoll(\RpgmsBundle\Entity\Product $roll)
     {
         $this->rolls[] = $roll;
 
@@ -240,9 +240,9 @@ class RollSet
     /**
      * Remove roll
      *
-     * @param \RPGMS\DiceBundle\Entity\Product $roll
+     * @param \RpgmsBundle\Entity\Product $roll
      */
-    public function removeRoll(\RPGMS\DiceBundle\Entity\Product $roll)
+    public function removeRoll(\RpgmsBundle\Entity\Product $roll)
     {
         $this->rolls->removeElement($roll);
     }

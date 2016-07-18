@@ -1,7 +1,7 @@
-rpgms_dice:
-    resource: "@RPGMSDiceBundle/Controller/"
+rpgms_rpgms:
+    resource: "@RpgmsBundle/Controller/"
     type:     annotation
     prefix:   /
-    
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Controller;
+namespace RpgmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,6 +14,6 @@ class DiceRollerController extends Controller
     public function rollerAction()
     {
         return new Response('Dice Roller');
-        #return $this->render('RPGMSDiceBundle:Default:index.html.twig');
+        #return $this->render('RpgmsBundle:Default:index.html.twig');
     }
 }
