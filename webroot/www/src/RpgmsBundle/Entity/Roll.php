@@ -5,12 +5,12 @@ namespace RpgmsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Rolls
+ * Roll
  *
- * @ORM\Table(name="rolls")
- * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollsRepository")
+ * @ORM\Table(name="roll")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollRepository")
  */
-class Rolls
+class Roll
 {
     /**
      * @var int
@@ -37,7 +37,7 @@ class Rolls
 
     //////////////////////////////////////////////////////////////////////
     /**
-     *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="rolls")
+     *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="roll")
      *  @ORM\JoinColumn(name="rollSet", referencedColumnName="id")
      */
     private $rollSet;
@@ -59,7 +59,7 @@ class Rolls
      *
      * @param integer $rollSet
      *
-     * @return Rolls
+     * @return Roll
      */
     public function setRollSet($rollSet)
     {
@@ -83,7 +83,7 @@ class Rolls
      *
      * @param integer $dice
      *
-     * @return Rolls
+     * @return Roll
      */
     public function setDice($dice)
     {
@@ -107,7 +107,7 @@ class Rolls
      *
      * @param integer $result
      *
-     * @return Rolls
+     * @return Roll
      */
     public function setResult($result)
     {

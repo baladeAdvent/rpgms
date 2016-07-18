@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Dice
  *
  * @ORM\Table(name="dice")
- * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\DiceRepository")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\DiceRepository")
  */
 class Dice
 {
@@ -125,4 +125,3 @@ class Dice
         return $this->maxRange;
     }
 }
-

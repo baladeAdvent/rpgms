@@ -1,6 +1,6 @@
 <?php
 
-namespace RPGMS\DiceBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * RollSet
  *
  * @ORM\Table(name="roll_set")
- * @ORM\Entity(repositoryClass="RPGMS\DiceBundle\Repository\RollSetRepository")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
 {
@@ -24,7 +24,7 @@ class RollSet
     private $id;
 
     /**
-     *  @ORM\OneToMany(targetEntity="Product", mappedBy="rollset")
+     *  @ORM\OneToMany(targetEntity="roll", mappedBy="rollset")
      */
     private $rolls;
 
@@ -222,4 +222,38 @@ class RollSet
         return $this->session;
     }
 
+
+    /**
+     * Add roll
+     *
+     * @param \RpgmsBundle\Entity\Rolls $roll
+     *
+     * @return RollSet
+     */
+    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        $this->rolls[] = $roll;
+
+        return $this;
+    }
+
+    /**
+     * Remove roll
+     *
+     * @param \RpgmsBundle\Entity\Product $roll
+     */
+    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        $this->rolls->removeElement($roll);
+    }
+
+    /**
+     * Get rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRolls()
+    {
+        return $this->rolls;
+    }
 }

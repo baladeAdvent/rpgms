@@ -1,7 +1,7 @@
 <?php
-// src/RPGMS/DiceBundle/User.php
+// src/RPGMS/RpgmsBundle/User.php
 
-namespace RPGMS\DiceBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;

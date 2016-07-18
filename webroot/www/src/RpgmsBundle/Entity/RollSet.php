@@ -24,7 +24,7 @@ class RollSet
     private $id;
 
     /**
-     *  @ORM\OneToMany(targetEntity="Product", mappedBy="rollset")
+     *  @ORM\OneToMany(targetEntity="roll", mappedBy="rollset")
      */
     private $rolls;
 
@@ -226,11 +226,11 @@ class RollSet
     /**
      * Add roll
      *
-     * @param \RpgmsBundle\Entity\Product $roll
+     * @param \RpgmsBundle\Entity\Roll $roll
      *
      * @return RollSet
      */
-    public function addRoll(\RpgmsBundle\Entity\Product $roll)
+    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
     {
         $this->rolls[] = $roll;
 
@@ -240,9 +240,9 @@ class RollSet
     /**
      * Remove roll
      *
-     * @param \RpgmsBundle\Entity\Product $roll
+     * @param \RpgmsBundle\Entity\Roll $roll
      */
-    public function removeRoll(\RpgmsBundle\Entity\Product $roll)
+    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
     {
         $this->rolls->removeElement($roll);
     }
