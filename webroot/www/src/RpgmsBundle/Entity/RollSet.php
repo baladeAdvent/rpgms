@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * RollSet
  *
- * @ORM\Table(name="roll_set")
+ * @ORM\Table(name="Roll_set")
  * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
@@ -24,7 +24,7 @@ class RollSet
     private $id;
 
     /**
-     *  @ORM\OneToMany(targetEntity="roll", mappedBy="rollset")
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
      */
     private $rolls;
 
@@ -79,27 +79,27 @@ class RollSet
     }
 
     /**
-     * Set rollDice
+     * Set RollDice
      *
-     * @param string $rollDice
+     * @param string $RollDice
      *
      * @return RollSet
      */
-    public function setRollDice($rollDice)
+    public function setRollDice($RollDice)
     {
-        $this->rollDice = $rollDice;
+        $this->RollDice = $RollDice;
 
         return $this;
     }
 
     /**
-     * Get rollDice
+     * Get RollDice
      *
      * @return string
      */
     public function getRollDice()
     {
-        return $this->rollDice;
+        return $this->RollDice;
     }
 
     /**
@@ -224,31 +224,31 @@ class RollSet
 
 
     /**
-     * Add roll
+     * Add Roll
      *
-     * @param \RpgmsBundle\Entity\Roll $roll
+     * @param \RpgmsBundle\Entity\Roll $Roll
      *
      * @return RollSet
      */
-    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
+    public function addRoll(\RpgmsBundle\Entity\Roll $Roll)
     {
-        $this->rolls[] = $roll;
+        $this->rolls[] = $Roll;
 
         return $this;
     }
 
     /**
-     * Remove roll
+     * Remove Roll
      *
-     * @param \RpgmsBundle\Entity\Roll $roll
+     * @param \RpgmsBundle\Entity\Roll $Roll
      */
-    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
+    public function removeRoll(\RpgmsBundle\Entity\Roll $Roll)
     {
-        $this->rolls->removeElement($roll);
+        $this->rolls->removeElement($Roll);
     }
 
     /**
-     * Get rolls
+     * Get Rolls
      *
      * @return \Doctrine\Common\Collections\Collection
      */
