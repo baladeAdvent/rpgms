@@ -63,6 +63,13 @@ class RollSet
      */
     private $session;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="result", type="integer")
+     */
+    private $result;
+
     public function __construct()
     {
         $this->rolls = new ArrayCollection();
