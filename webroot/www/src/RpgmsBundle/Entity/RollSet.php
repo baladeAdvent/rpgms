@@ -24,16 +24,20 @@ class RollSet
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollsets")
+     * @ORM\JoinColumn(name="w_id", referencedColumnName="id")
+     */
+    private $wId;
+
+    /**
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
      *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
      */
     private $rolls;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="w_id", type="integer")
-     */
-    private $wId;
 
     /**
      * @var string
@@ -59,19 +63,13 @@ class RollSet
     /**
      * @var int
      *
-     * @ORM\Column(name="session", type="integer")
-     */
-    private $session;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
 
     public function __construct()
     {
+        $this->date = new \DateTime();
         $this->rolls = new ArrayCollection();
     }
 
@@ -204,31 +202,6 @@ class RollSet
     {
         return $this->action;
     }
-
-    /**
-     * Set session
-     *
-     * @param integer $session
-     *
-     * @return RollSet
-     */
-    public function setSession($session)
-    {
-        $this->session = $session;
-
-        return $this;
-    }
-
-    /**
-     * Get session
-     *
-     * @return integer
-     */
-    public function getSession()
-    {
-        return $this->session;
-    }
-
 
     /**
      * Add Roll

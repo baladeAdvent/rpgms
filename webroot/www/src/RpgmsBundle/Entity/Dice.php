@@ -22,6 +22,13 @@ class Dice
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="w_id", type="integer")
+     */
+    private $wId;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
