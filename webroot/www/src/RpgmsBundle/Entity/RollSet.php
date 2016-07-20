@@ -31,6 +31,8 @@ class RollSet
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 

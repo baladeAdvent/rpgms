@@ -33,14 +33,17 @@ class World
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
     
     ////////////
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToMany(targetEntity="Dice" mappedBy="worlds")
      */
     private $dicebag;
+    
     /**
      * @ORM\OneToMany(targetEntity="RollSet", mappedBy="wId")
      */

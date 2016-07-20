@@ -3,6 +3,7 @@
 namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Dice
@@ -20,13 +21,6 @@ class Dice
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="w_id", type="integer")
-     */
-    private $wId;
 
     /**
      * @var string
@@ -49,6 +43,12 @@ class Dice
      */
     private $maxRange;
 
+    ////////////
+    /**
+     * @ORM\ManyToMany(targetEntity="World" inversedBy="dicebag")
+     * @JoinTable(name="world_dice")
+     */
+    private $worlds;
 
     /**
      * Get id
