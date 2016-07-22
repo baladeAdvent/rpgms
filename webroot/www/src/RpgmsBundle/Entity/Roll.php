@@ -24,7 +24,8 @@ class Roll
     /**
      * @var int
      *
-     * @ORM\Column(name="dice", type="integer")
+     * @ORM\ManyToOne(targetEntity="Dice")
+     * @JoinColumn(name="roll_dice", referencedColumnName="id")
      */
     private $dice;
 
