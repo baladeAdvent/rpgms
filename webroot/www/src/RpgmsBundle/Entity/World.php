@@ -2,7 +2,7 @@
 
 // RpgmsBundle/Entity/World.php
 
-namespace AppBundle\Entity;
+namespace RpgmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -39,15 +39,18 @@ class World
     private $date;
     
     ////////////
+    // One dicebag, many Dice
     /**
-     * @ORM\ManyToMany(targetEntity="Dice" mappedBy="worlds")
+     * @ORM\ManyToMany(targetEntity="Dice", inversedBy="worlds")
+     * @ORM\JoinColumn(name="dice", referencedColumnName="id")
      */
-    private $dicebag;
+    private $diceBag;
     
+    // One world, Many Roll Sets
     /**
-     * @ORM\OneToMany(targetEntity="RollSet", mappedBy="wId")
+     * @ORM\OneToMany(targetEntity="RollSet", mappedBy="world")
      */
-    private $rollsets;
+    private $rollSets;
 
     public function __construct()
     {

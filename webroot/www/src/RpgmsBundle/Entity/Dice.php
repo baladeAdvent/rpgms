@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Dice
 {
+
     /**
      * @var int
      *
@@ -42,13 +43,17 @@ class Dice
      * @ORM\Column(name="maxRange", type="integer")
      */
     private $maxRange;
-
     ////////////
+    // Many dice to many dice bags
     /**
-     * @ORM\ManyToMany(targetEntity="World" inversedBy="dicebag")
-     * @JoinTable(name="world_dice")
+     * @ORM\ManyToMany(targetEntity="World", mappedBy="dicebag")
      */
     private $worlds;
+
+    public function __construct()
+    {
+        $this->worlds = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -131,4 +136,5 @@ class Dice
     {
         return $this->maxRange;
     }
+
 }

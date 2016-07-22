@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * RollSet
  *
- * @ORM\Table(name="Roll_set")
+ * @ORM\Table(name="roll_set")
  * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
@@ -23,11 +23,12 @@ class RollSet
      */
     private $id;
 
+    // Many rollsets, one world
     /**
-     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollsets")
-     * @ORM\JoinColumn(name="w_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollSets")
+     * @ORM\JoinColumn(name="world", referencedColumnName="id")
      */
-    private $wId;
+    private $world;
 
     /**
      * @var \DateTime
