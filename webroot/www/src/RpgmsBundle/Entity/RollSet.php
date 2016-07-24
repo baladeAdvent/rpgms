@@ -8,8 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * RollSet
  *
+ * @ORM\Entity
  * @ORM\Table(name="roll_set")
- * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
 {
@@ -38,11 +38,6 @@ class RollSet
     private $date;
 
     /**
-     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
-     */
-    private $rolls;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="action", type="string", length=255)
@@ -69,6 +64,12 @@ class RollSet
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
+
+    //////////////
+    /**
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
+     */
+    private $rolls;
 
     public function __construct()
     {
@@ -238,5 +239,77 @@ class RollSet
     public function getRolls()
     {
         return $this->rolls;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return RollSet
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set result
+     *
+     * @param integer $result
+     *
+     * @return RollSet
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return integer
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Set world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     *
+     * @return RollSet
+     */
+    public function setWorld(\RpgmsBundle\Entity\World $world = null)
+    {
+        $this->world = $world;
+
+        return $this;
+    }
+
+    /**
+     * Get world
+     *
+     * @return \RpgmsBundle\Entity\World
+     */
+    public function getWorld()
+    {
+        return $this->world;
     }
 }

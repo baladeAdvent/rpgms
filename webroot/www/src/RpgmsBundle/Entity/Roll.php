@@ -36,6 +36,7 @@ class Roll
      */
     private $dice;
     
+    // Many Rolls, One RollSet
     /**
      *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="roll")
      *  @ORM\JoinColumn(name="rollSet", referencedColumnName="id")

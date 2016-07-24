@@ -8,8 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * RollSet
  *
+ * @ORM\Entity
  * @ORM\Table(name="roll_set")
- * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\RollSetRepository")
  */
 class RollSet
 {
@@ -23,17 +23,19 @@ class RollSet
      */
     private $id;
 
+    // Many rollsets, one world
     /**
-     *  @ORM\OneToMany(targetEntity="roll", mappedBy="rollset")
+     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollSets")
+     * @ORM\JoinColumn(name="world", referencedColumnName="id")
      */
-    private $rolls;
+    private $world;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="w_id", type="integer")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $wId;
+    private $date;
 
     /**
      * @var string
@@ -59,12 +61,19 @@ class RollSet
     /**
      * @var int
      *
-     * @ORM\Column(name="session", type="integer")
+     * @ORM\Column(name="result", type="integer")
      */
-    private $session;
+    private $result;
+
+    //////////////
+    /**
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
+     */
+    private $rolls;
 
     public function __construct()
     {
+        $this->date = new \DateTime();
         $this->rolls = new ArrayCollection();
     }
 
@@ -79,27 +88,27 @@ class RollSet
     }
 
     /**
-     * Set rollDice
+     * Set RollDice
      *
-     * @param string $rollDice
+     * @param string $RollDice
      *
      * @return RollSet
      */
-    public function setRollDice($rollDice)
+    public function setRollDice($RollDice)
     {
-        $this->rollDice = $rollDice;
+        $this->RollDice = $RollDice;
 
         return $this;
     }
 
     /**
-     * Get rollDice
+     * Get RollDice
      *
      * @return string
      */
     public function getRollDice()
     {
-        return $this->rollDice;
+        return $this->RollDice;
     }
 
     /**
@@ -199,61 +208,108 @@ class RollSet
     }
 
     /**
-     * Set session
+     * Add Roll
      *
-     * @param integer $session
+     * @param \RpgmsBundle\Entity\Roll $Roll
      *
      * @return RollSet
      */
-    public function setSession($session)
+    public function addRoll(\RpgmsBundle\Entity\Roll $Roll)
     {
-        $this->session = $session;
+        $this->rolls[] = $Roll;
 
         return $this;
     }
 
     /**
-     * Get session
+     * Remove Roll
      *
-     * @return integer
+     * @param \RpgmsBundle\Entity\Roll $Roll
      */
-    public function getSession()
+    public function removeRoll(\RpgmsBundle\Entity\Roll $Roll)
     {
-        return $this->session;
-    }
-
-
-    /**
-     * Add roll
-     *
-     * @param \RpgmsBundle\Entity\Rolls $roll
-     *
-     * @return RollSet
-     */
-    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
-    {
-        $this->rolls[] = $roll;
-
-        return $this;
+        $this->rolls->removeElement($Roll);
     }
 
     /**
-     * Remove roll
-     *
-     * @param \RpgmsBundle\Entity\Product $roll
-     */
-    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
-    {
-        $this->rolls->removeElement($roll);
-    }
-
-    /**
-     * Get rolls
+     * Get Rolls
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getRolls()
     {
         return $this->rolls;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return RollSet
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set result
+     *
+     * @param integer $result
+     *
+     * @return RollSet
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return integer
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Set world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     *
+     * @return RollSet
+     */
+    public function setWorld(\RpgmsBundle\Entity\World $world = null)
+    {
+        $this->world = $world;
+
+        return $this;
+    }
+
+    /**
+     * Get world
+     *
+     * @return \RpgmsBundle\Entity\World
+     */
+    public function getWorld()
+    {
+        return $this->world;
     }
 }

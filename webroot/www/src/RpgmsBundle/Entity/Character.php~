@@ -1,0 +1,160 @@
+<?php
+
+namespace RpgmsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Character
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="character")
+ */
+class Character
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="race", type="string", length=255)
+     */
+    private $race;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    ////////////
+    /**
+     * @ORM\ManyToOne(targetEntity="World", inversedBy="characters")
+     * @ORM\JoinColumn(name="world", referencedColumnName="id")
+     */
+    private $world;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Character
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set race
+     *
+     * @param string $race
+     *
+     * @return Character
+     */
+    public function setRace($race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+     * Get race
+     *
+     * @return string
+     */
+    public function getRace()
+    {
+        return $this->race;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Character
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set world
+     *
+     * @param integer $world
+     *
+     * @return Character
+     */
+    public function setWorld($world)
+    {
+        $this->world = $world;
+
+        return $this;
+    }
+
+    /**
+     * Get world
+     *
+     * @return int
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+}
+

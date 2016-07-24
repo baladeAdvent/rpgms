@@ -8,8 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Dice
  *
+ * @ORM\Entity
  * @ORM\Table(name="dice")
- * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\DiceRepository")
  */
 class Dice
 {
@@ -43,6 +43,7 @@ class Dice
      * @ORM\Column(name="maxRange", type="integer")
      */
     private $maxRange;
+    
     ////////////
     // Many dice to many dice bags
     /**
@@ -137,4 +138,38 @@ class Dice
         return $this->maxRange;
     }
 
+
+    /**
+     * Add world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     *
+     * @return Dice
+     */
+    public function addWorld(\RpgmsBundle\Entity\World $world)
+    {
+        $this->worlds[] = $world;
+
+        return $this;
+    }
+
+    /**
+     * Remove world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     */
+    public function removeWorld(\RpgmsBundle\Entity\World $world)
+    {
+        $this->worlds->removeElement($world);
+    }
+
+    /**
+     * Get worlds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorlds()
+    {
+        return $this->worlds;
+    }
 }

@@ -24,18 +24,19 @@ class Roll
     /**
      * @var int
      *
-     * @ORM\Column(name="dice", type="integer")
-     */
-    private $dice;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
 
     //////////////////////////////////////////////////////////////////////
+    // One Roll, One Dice
+    /**
+     * @ORM\ManyToOne(targetEntity="Dice")
+     * @ORM\JoinColumn(name="dice", referencedColumnName="id")
+     */
+    private $dice;
+    
+    // Many Rolls, One RollSet
     /**
      *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="roll")
      *  @ORM\JoinColumn(name="rollSet", referencedColumnName="id")

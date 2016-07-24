@@ -3,6 +3,10 @@ Pet project to setup a rich system for allowing groups to set up worlds and char
 
 ~baladeAdvent
 
+Update Schema:
+
+    php bin/console doctrine:schema:update --force
+
 Generate Entities:
     
     php bin/console doctrine:generate:entity
