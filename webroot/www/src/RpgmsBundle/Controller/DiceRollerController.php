@@ -13,7 +13,6 @@ class DiceRollerController extends Controller
      */
     public function rollerAction()
     {
-        return new Response('Dice Roller');
-        #return $this->render('RpgmsBundle:Default:index.html.twig');
+        return $this->render('RpgmsBundle:DiceRoller:roller.html.twig');
     }
 }

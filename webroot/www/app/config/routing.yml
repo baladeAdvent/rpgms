@@ -1,5 +1,5 @@
 rpgms_rpgms:
-    resource: "@RpgmsBundle/Controller/"
+    resource: "@RpgmsBundle/Controller"
     type:     annotation
     prefix:   /
 

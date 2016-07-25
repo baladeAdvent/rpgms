@@ -1,4 +1,4 @@
 services:
-#    rpgms_rpgms.example:
-#        class: RpgmsBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    rpgms.dice_service:
+        class: RpgmsBundle\Helper\DiceService
+        arguments: ["@doctrine.orm.entity_manager"]

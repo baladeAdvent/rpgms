@@ -25,11 +25,9 @@ class LoadDefaultPlayerCharacter extends AbstractFixture implements OrderedFixtu
         
         // Get test World
         $world = $doctrine->getRepository('RpgmsBundle\Entity\World')->findOneBy(array('name' => 'testWorld'));
-        ladybug_dump($world);
         
         // Get test User
         $user = $doctrine->getRepository('RpgmsBundle\Entity\User')->findOneBy(array('username' => 'admin'));
-        ladybug_dump($user);
         
         $playerCharacter = new PlayerCharacter();
         $playerCharacter->setName('testCharacter');

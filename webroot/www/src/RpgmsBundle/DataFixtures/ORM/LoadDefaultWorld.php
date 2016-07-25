@@ -24,7 +24,6 @@ class LoadDefaultWorld extends AbstractFixture implements OrderedFixtureInterfac
        
         // Find admin user
         $user = $doctrine->getRepository('RpgmsBundle\Entity\User')->findOneBy(array('username' => 'admin'));
-        ladybug_dump($user);
         $die = $doctrine->getRepository('RpgmsBundle\Entity\Dice')->findAll();
         
         $world = new World();
