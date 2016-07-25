@@ -8,12 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DiceRollerController extends Controller
 {
+
     /**
      * @Route("/dice", name="Dice Roller")
      */
     public function rollerAction()
     {
-        return new Response('Dice Roller');
-        #return $this->render('RpgmsBundle:DiceRoller:roller.html.twig');
+        #return new Response('Dice Roller');
+        return $this->render('RpgmsBundle:DiceRoller:roller.html.twig', array());
     }
+
 }
