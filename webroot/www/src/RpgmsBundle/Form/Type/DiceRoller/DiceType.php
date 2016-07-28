@@ -11,10 +11,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use RpgmsBundle\Form\Type\DiceRoller\RollsetType;
+use RpgmsBundle\Form\Type\DiceRoller\RollType;
+use RpgmsBundle\Form\Type\DiceRoller\DiceType;
+
+use RpgmsBundle\Entity\RollSet;
+use RpgmsBundle\Entity\Roll;
+use RpgmsBundle\Entity\Dice;
+
 class DiceType extends AbstractType
 {
 
-    public function __construction($worldId)
+    public function __construction($worldId = null)
     {
         $this->worldId = $worldId;
     }
@@ -25,9 +33,7 @@ class DiceType extends AbstractType
                 ->add('Dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'query_builder' => function (EntityRepository $er) {
-                      return $er->createQuery(
-                              'SELECT dice_id FROM world_dice WHERE world_id=1'
-                              )->getResult();
+                      return $er->createQueryBuilder('d')->orderBy('d.name', 'DESC');
                     },
                     'choice_label' => 'dice'
         ));
@@ -37,6 +43,7 @@ class DiceType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\Dice',
+            'world_id' => 1
         ));
     }
 

@@ -52,7 +52,7 @@ class World
     // One dicebag, many Dice
     /**
      * @ORM\ManyToMany(targetEntity="Dice", inversedBy="worlds")
-     * @ORM\JoinColumn(name="dice", referencedColumnName="id")
+     * @ORM\JoinTable(name="world_dice")
      */
     private $diceBag;
     
@@ -70,9 +70,9 @@ class World
 
     public function __construct()
     {
-        $this->dicebag = new ArrayCollection();
+        $this->diceBag = new ArrayCollection();
         $this->playerCharacters = new ArrayCollection();
-        $this->rollsets = new ArrayCollection();
+        $this->rollSets = new ArrayCollection();
         
         // Set generic D20 dice in Dicebag
     }

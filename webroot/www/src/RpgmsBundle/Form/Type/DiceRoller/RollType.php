@@ -17,15 +17,15 @@ use RpgmsBundle\Entity\Dice;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class RollSetType extends AbstractType
+class RollType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $diceType = new DiceType($this->worldId);
         $builder
-                ->add('Rolls', CollectionType::class, array(
-                    'entry_type' =>  RollType::class
+                ->add('Dice', CollectionType::class, array(
+                    'entry_type' =>  DiceType::class
                 ))
         ;
         
@@ -33,7 +33,7 @@ class RollSetType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'RpgmsBundle\Entity\RollSet',
+            'data_class' => 'RpgmsBundle\Entity\Roll',
             'world_id' => 1
         ));
     }

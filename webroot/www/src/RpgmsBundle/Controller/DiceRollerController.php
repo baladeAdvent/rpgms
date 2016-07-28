@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Form\Type\DiceRoller\RollSetType;
 use RpgmsBundle\Form\Type\DiceRoller\DiceType;
 
@@ -19,8 +20,8 @@ class DiceRollerController extends Controller
     public function rollerAction(Request $request)
     {
         $world = 1;
-        $rollSetType = new RollSetType($world);
-        $form = $this->createForm($rollSetType, null);
+        $rollSet = new RollSet;
+        $form = $this->createForm(RollSetType::class,$rollSet);
         $form->handleRequest($request);
         #return new Response('Dice Roller');
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
