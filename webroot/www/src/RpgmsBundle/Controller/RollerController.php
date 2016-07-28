@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Not needed, just keeping this controller in so the bundle will work...
+ */
 namespace RpgmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
