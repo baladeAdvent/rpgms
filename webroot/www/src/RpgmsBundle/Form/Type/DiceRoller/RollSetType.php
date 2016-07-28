@@ -24,8 +24,10 @@ class RollSetType extends AbstractType
     {
         $diceType = new DiceType($this->worldId);
         $builder
-                ->add('Rolls', CollectionType::class, array(
-                    'entry_type' =>  RollType::class
+                ->add('roll', CollectionType::class, array(
+                    'entry_type' =>  RollType::class,
+                    'required' => false,
+                    'multiple' => true,
                 ))
         ;
         
