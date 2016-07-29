@@ -22,12 +22,9 @@ class RollSetType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $diceType = new DiceType($this->worldId);
         $builder
-                ->add('roll', CollectionType::class, array(
+                ->add('Roll', CollectionType::class, array(
                     'entry_type' =>  RollType::class,
-                    'required' => false,
-                    'multiple' => true,
                 ))
         ;
         

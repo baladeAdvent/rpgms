@@ -21,9 +21,10 @@ class DiceRollerController extends Controller
     {
         $world = 1;
         $rollSet = new RollSet;
-        $form = $this->createForm(RollSetType::class,$rollSet);
+        
+        $form = $this->createForm(RollSetType::class, $rollSet);
         $form->handleRequest($request);
-        #return new Response('Dice Roller');
+        
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
             'test' => 'test',
             'form' => $form->createView()
