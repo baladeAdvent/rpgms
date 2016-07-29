@@ -6,6 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use RpgmsBundle\Form\Type\DiceRoller\RollsetType;
 use RpgmsBundle\Form\Type\DiceRoller\RollType;
@@ -15,8 +19,6 @@ use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Entity\Dice;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 class RollSetType extends AbstractType
 {
 
@@ -24,7 +26,7 @@ class RollSetType extends AbstractType
     {
         $builder
                 ->add('Roll', CollectionType::class, array(
-                    'entry_type' =>  RollType::class,
+                    'entry_type' => RollType::class,
                 ))
         ;
         

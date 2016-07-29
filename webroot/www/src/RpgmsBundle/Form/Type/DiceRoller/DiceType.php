@@ -22,21 +22,18 @@ use RpgmsBundle\Entity\Dice;
 class DiceType extends AbstractType
 {
 
-    public function __construction($worldId = null)
-    {
-        $this->worldId = $worldId;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
                 ->add('Dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'query_builder' => function (EntityRepository $er) {
-                      return $er->createQueryBuilder('d');
+                      return $er->createQueryBuilder('d')
+                              ->orderBy('d.name', 'ASC');
                     },
-                    'choice_label' => 'dice'
-        ));
+                    'choice_label' => 'name'
+                ))
+                ->add('name');
     }
 
     public function configureOptions(OptionsResolver $resolver)

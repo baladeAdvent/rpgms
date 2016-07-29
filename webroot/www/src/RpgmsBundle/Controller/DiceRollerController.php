@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Form\Type\DiceRoller\RollSetType;
-use RpgmsBundle\Form\Type\DiceRoller\DiceType;
 
 class DiceRollerController extends Controller
 {
