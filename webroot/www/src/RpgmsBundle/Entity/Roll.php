@@ -48,59 +48,11 @@ class Roll
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set rollSet
-     *
-     * @param integer $rollSet
-     *
-     * @return Roll
-     */
-    public function setRollSet($rollSet)
-    {
-        $this->rollSet = $rollSet;
-
-        return $this;
-    }
-
-    /**
-     * Get rollSet
-     *
-     * @return int
-     */
-    public function getRollSet()
-    {
-        return $this->rollSet;
-    }
-
-    /**
-     * Set dice
-     *
-     * @param integer $dice
-     *
-     * @return Roll
-     */
-    public function setDice($dice)
-    {
-        $this->dice = $dice;
-
-        return $this;
-    }
-
-    /**
-     * Get dice
-     *
-     * @return int
-     */
-    public function getDice()
-    {
-        return $this->dice;
     }
 
     /**
@@ -120,10 +72,58 @@ class Roll
     /**
      * Get result
      *
-     * @return int
+     * @return integer
      */
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * Set dice
+     *
+     * @param \RpgmsBundle\Entity\Dice $dice
+     *
+     * @return Roll
+     */
+    public function setDice(\RpgmsBundle\Entity\Dice $dice = null)
+    {
+        $this->dice = $dice;
+
+        return $this;
+    }
+
+    /**
+     * Get dice
+     *
+     * @return \RpgmsBundle\Entity\Dice
+     */
+    public function getDice()
+    {
+        return $this->dice;
+    }
+
+    /**
+     * Set rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     *
+     * @return Roll
+     */
+    public function setRollSet(\RpgmsBundle\Entity\RollSet $rollSet = null)
+    {
+        $this->rollSet = $rollSet;
+
+        return $this;
+    }
+
+    /**
+     * Get rollSet
+     *
+     * @return \RpgmsBundle\Entity\RollSet
+     */
+    public function getRollSet()
+    {
+        return $this->rollSet;
     }
 }

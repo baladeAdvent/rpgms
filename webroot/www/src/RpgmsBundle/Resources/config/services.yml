@@ -2,3 +2,7 @@ services:
     rpgms.dice_service:
         class: RpgmsBundle\Helper\DiceService
         arguments: ["@doctrine.orm.entity_manager"]
+        
+    rpgms.world_service:
+        class: RpgmsBundle\Helper\WorldService
+        arguments: ["@doctrine.orm.entity_manager"]

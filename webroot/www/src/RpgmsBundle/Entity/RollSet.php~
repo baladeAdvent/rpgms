@@ -236,6 +236,16 @@ class RollSet
      *
      * @return \Doctrine\Common\Collections\Collection
      */
+    public function getRoll()
+    {
+        return $this->rolls;
+    }
+    
+    /**
+     * Get Rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
     public function getRolls()
     {
         return $this->rolls;

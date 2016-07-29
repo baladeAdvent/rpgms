@@ -47,7 +47,7 @@ class Dice
     ////////////
     // Many dice to many dice bags
     /**
-     * @ORM\ManyToMany(targetEntity="World", mappedBy="dicebag")
+     * @ORM\ManyToMany(targetEntity="World", mappedBy="diceBag")
      */
     private $worlds;
 

@@ -21,9 +21,14 @@ use RpgmsBundle\Entity\Dice;
 
 class RollSetType extends AbstractType
 {
+    
+    private $diceBag;
+    
 
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        ladybug_dump($options['diceBag']);
         $builder
                 ->add('Roll', CollectionType::class, array(
                     'entry_type' => RollType::class,
@@ -35,7 +40,7 @@ class RollSetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\RollSet',
-            'world_id' => 1
+            'diceBag' => null
         ));
     }
 }

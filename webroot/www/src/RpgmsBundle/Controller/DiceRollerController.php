@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use RpgmsBundle\Entity\RollSet;
+use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Form\Type\DiceRoller\RollSetType;
 
 class DiceRollerController extends Controller
@@ -18,14 +19,33 @@ class DiceRollerController extends Controller
      */
     public function rollerAction(Request $request)
     {
+        $worldService = $this->get('rpgms.world_service');
+        /**
+         *  Need some sort of method/service to determine active world for this user, probably pull off the character being used
+         *  For now using static variable
+         */
         $world = 1;
+        
+        /**
+         *  Get Dicebag for current world
+         */
+        $diceBag = $worldService->getDiceBag($world);
+        
         $rollSet = new RollSet;
         
-        $form = $this->createForm(RollSetType::class, $rollSet);
+        $roll = new Roll();
+        #$roll->setDice(4);
+        #$roll->setRollSet();
+        
+        $rollSet->addRoll($roll);
+        
+        $form = $this->createForm(RollSetType::class, $rollSet, array(
+            'diceBag' => $diceBag,
+        ));
         $form->handleRequest($request);
         
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
-            'test' => 'test',
+            'diceBag' => $diceBag,
             'form' => $form->createView()
         ),null,null);
     }
