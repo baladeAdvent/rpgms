@@ -28,12 +28,10 @@ class DiceType extends AbstractType
                 ->add('Dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'query_builder' => function (EntityRepository $er) {
-                      return $er->createQueryBuilder('d')
-                              ->orderBy('d.name', 'ASC');
+                      return $er->createQueryBuilder('d')->orderBy('d.name', 'DESC');
                     },
-                    'choice_label' => 'name'
-                ))
-                ->add('name');
+                    'choice_label' => 'name',
+                ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

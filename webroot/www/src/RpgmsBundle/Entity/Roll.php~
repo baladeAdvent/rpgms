@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Roll
 {
+
     /**
      * @var int
      *
@@ -27,7 +28,6 @@ class Roll
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
-
     //////////////////////////////////////////////////////////////////////
     // One Roll, One Dice
     /**
@@ -35,13 +35,18 @@ class Roll
      * @ORM\JoinColumn(name="dice", referencedColumnName="id")
      */
     private $dice;
-    
     // Many Rolls, One RollSet
     /**
-     *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="roll")
+     *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="rolls")
      *  @ORM\JoinColumn(name="rollSet", referencedColumnName="id")
      */
     private $rollSet;
+
     //////////////////////////////////////////////////////////////////////
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
 }

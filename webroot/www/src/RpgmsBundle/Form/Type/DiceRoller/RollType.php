@@ -19,14 +19,18 @@ use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Entity\Dice;
 
+
 class RollType extends AbstractType
 {
 
+    /**
+     * One roll set will have any number of Rolls which will contain 1 dice
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-                ->add('Dice', CollectionType::class, array(
-                    'entry_type' =>  DiceType::class
+        $builder->add('Dice', CollectionType::class, array(
+                    'entry_type' =>  DiceType::class,
+                    'allow_add' => true,
                 ))
         ;
         

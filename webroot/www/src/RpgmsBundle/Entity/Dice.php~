@@ -43,7 +43,6 @@ class Dice
      * @ORM\Column(name="maxRange", type="integer")
      */
     private $maxRange;
-    
     ////////////
     // Many dice to many dice bags
     /**
@@ -56,120 +55,9 @@ class Dice
         $this->worlds = new ArrayCollection();
     }
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Dice
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function __toString()
     {
         return $this->name;
     }
 
-    /**
-     * Set minRange
-     *
-     * @param integer $minRange
-     *
-     * @return Dice
-     */
-    public function setMinRange($minRange)
-    {
-        $this->minRange = $minRange;
-
-        return $this;
-    }
-
-    /**
-     * Get minRange
-     *
-     * @return int
-     */
-    public function getMinRange()
-    {
-        return $this->minRange;
-    }
-
-    /**
-     * Set maxRange
-     *
-     * @param integer $maxRange
-     *
-     * @return Dice
-     */
-    public function setMaxRange($maxRange)
-    {
-        $this->maxRange = $maxRange;
-
-        return $this;
-    }
-
-    /**
-     * Get maxRange
-     *
-     * @return int
-     */
-    public function getMaxRange()
-    {
-        return $this->maxRange;
-    }
-
-
-    /**
-     * Add world
-     *
-     * @param \RpgmsBundle\Entity\World $world
-     *
-     * @return Dice
-     */
-    public function addWorld(\RpgmsBundle\Entity\World $world)
-    {
-        $this->worlds[] = $world;
-
-        return $this;
-    }
-
-    /**
-     * Remove world
-     *
-     * @param \RpgmsBundle\Entity\World $world
-     */
-    public function removeWorld(\RpgmsBundle\Entity\World $world)
-    {
-        $this->worlds->removeElement($world);
-    }
-
-    /**
-     * Get worlds
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWorlds()
-    {
-        return $this->worlds;
-    }
 }

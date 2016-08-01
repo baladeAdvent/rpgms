@@ -22,7 +22,6 @@ class RollSet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     // Many rollsets, one world
     /**
      * @ORM\ManyToOne(targetEntity="World", inversedBy="rollSets")
@@ -64,10 +63,9 @@ class RollSet
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
-
     //////////////
     /**
-     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="RollSet")
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet")
      */
     private $rolls;
 
@@ -77,10 +75,16 @@ class RollSet
         $this->rolls = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -88,99 +92,27 @@ class RollSet
     }
 
     /**
-     * Set RollDice
+     * Set date
      *
-     * @param string $RollDice
+     * @param \DateTime $date
      *
      * @return RollSet
      */
-    public function setRollDice($RollDice)
+    public function setDate($date)
     {
-        $this->RollDice = $RollDice;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get RollDice
+     * Get date
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getRollDice()
+    public function getDate()
     {
-        return $this->RollDice;
-    }
-
-    /**
-     * Set wId
-     *
-     * @param integer $wId
-     *
-     * @return RollSet
-     */
-    public function setWId($wId)
-    {
-        $this->wId = $wId;
-
-        return $this;
-    }
-
-    /**
-     * Get wId
-     *
-     * @return int
-     */
-    public function getWId()
-    {
-        return $this->wId;
-    }
-
-    /**
-     * Set bonus
-     *
-     * @param integer $bonus
-     *
-     * @return RollSet
-     */
-    public function setBonus($bonus)
-    {
-        $this->bonus = $bonus;
-
-        return $this;
-    }
-
-    /**
-     * Get bonus
-     *
-     * @return int
-     */
-    public function getBonus()
-    {
-        return $this->bonus;
-    }
-
-    /**
-     * Set penalty
-     *
-     * @param integer $penalty
-     *
-     * @return RollSet
-     */
-    public function setPenalty($penalty)
-    {
-        $this->penalty = $penalty;
-
-        return $this;
-    }
-
-    /**
-     * Get penalty
-     *
-     * @return int
-     */
-    public function getPenalty()
-    {
-        return $this->penalty;
+        return $this->date;
     }
 
     /**
@@ -208,71 +140,51 @@ class RollSet
     }
 
     /**
-     * Add Roll
+     * Set bonus
      *
-     * @param \RpgmsBundle\Entity\Roll $Roll
+     * @param integer $bonus
      *
      * @return RollSet
      */
-    public function addRoll(\RpgmsBundle\Entity\Roll $Roll)
+    public function setBonus($bonus)
     {
-        $this->rolls[] = $Roll;
+        $this->bonus = $bonus;
 
         return $this;
     }
 
     /**
-     * Remove Roll
+     * Get bonus
      *
-     * @param \RpgmsBundle\Entity\Roll $Roll
+     * @return integer
      */
-    public function removeRoll(\RpgmsBundle\Entity\Roll $Roll)
+    public function getBonus()
     {
-        $this->rolls->removeElement($Roll);
+        return $this->bonus;
     }
 
     /**
-     * Get Rolls
+     * Set penalty
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRoll()
-    {
-        return $this->rolls;
-    }
-    
-    /**
-     * Get Rolls
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRolls()
-    {
-        return $this->rolls;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
+     * @param integer $penalty
      *
      * @return RollSet
      */
-    public function setDate($date)
+    public function setPenalty($penalty)
     {
-        $this->date = $date;
+        $this->penalty = $penalty;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get penalty
      *
-     * @return \DateTime
+     * @return integer
      */
-    public function getDate()
+    public function getPenalty()
     {
-        return $this->date;
+        return $this->penalty;
     }
 
     /**
@@ -321,5 +233,49 @@ class RollSet
     public function getWorld()
     {
         return $this->world;
+    }
+
+    /**
+     * Add roll
+     *
+     * @param \RpgmsBundle\Entity\Roll $roll
+     *
+     * @return RollSet
+     */
+    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        $this->rolls[] = $roll;
+
+        return $this;
+    }
+
+    /**
+     * Remove roll
+     *
+     * @param \RpgmsBundle\Entity\Roll $roll
+     */
+    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        $this->rolls->removeElement($roll);
+    }
+
+    /**
+     * Get rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRolls()
+    {
+        return $this->rolls;
+    }
+    
+    /**
+     * Get rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoll()
+    {
+        return $this->rolls;
     }
 }

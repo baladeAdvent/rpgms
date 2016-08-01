@@ -21,14 +21,15 @@ use RpgmsBundle\Entity\Dice;
 
 class RollSetType extends AbstractType
 {
-    
-    private $diceBag;
-    
 
-    
+    /**
+     * Roll Set will generate any number of rolls
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        ladybug_dump($options['diceBag']);
+        $builder->add('Action');
+        $builder->add('Bonus');
+        $builder->add('Penalty');
         $builder
                 ->add('Roll', CollectionType::class, array(
                     'entry_type' => RollType::class,
@@ -40,7 +41,6 @@ class RollSetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\RollSet',
-            'diceBag' => null
         ));
     }
 }

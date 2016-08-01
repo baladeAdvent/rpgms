@@ -24,28 +24,24 @@ class DiceRollerController extends Controller
          *  Need some sort of method/service to determine active world for this user, probably pull off the character being used
          *  For now using static variable
          */
-        $world = 1;
-        
-        /**
-         *  Get Dicebag for current world
-         */
-        $diceBag = $worldService->getDiceBag($world);
+        $worldId = 1;
+        $world = $worldService->getWorld($worldId);
+
+        $dice = $world->getDiceBag()->first();
+        ladybug_dump($dice);
         
         $rollSet = new RollSet;
         
         $roll = new Roll();
-        #$roll->setDice(4);
-        #$roll->setRollSet();
+        $roll->setDice($dice);
+        $roll->setRollSet($rollSet);
         
         $rollSet->addRoll($roll);
         
-        $form = $this->createForm(RollSetType::class, $rollSet, array(
-            'diceBag' => $diceBag,
-        ));
+        $form = $this->createForm(RollSetType::class, $rollSet, array());
         $form->handleRequest($request);
         
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
-            'diceBag' => $diceBag,
             'form' => $form->createView()
         ),null,null);
     }

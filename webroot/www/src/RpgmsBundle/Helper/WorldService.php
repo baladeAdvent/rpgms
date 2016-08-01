@@ -23,7 +23,13 @@ class WorldService
     public function getDiceBag($worldId)
     {
         $world = $this->em->getRepository('RpgmsBundle:World')->findOneById($worldId);
-        return $world->getDiceBag()->toArray();
+        return $world->getDiceBag();
+    }
+
+    public function getWorld($worldId)
+    {
+        $world = $this->em->getRepository('RpgmsBundle:World')->findOneById($worldId);
+        return $world;
     }
 
 }

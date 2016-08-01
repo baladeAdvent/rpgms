@@ -43,7 +43,6 @@ class Dice
      * @ORM\Column(name="maxRange", type="integer")
      */
     private $maxRange;
-    
     ////////////
     // Many dice to many dice bags
     /**
@@ -56,10 +55,16 @@ class Dice
         $this->worlds = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -107,7 +112,7 @@ class Dice
     /**
      * Get minRange
      *
-     * @return int
+     * @return integer
      */
     public function getMinRange()
     {
@@ -131,13 +136,12 @@ class Dice
     /**
      * Get maxRange
      *
-     * @return int
+     * @return integer
      */
     public function getMaxRange()
     {
         return $this->maxRange;
     }
-
 
     /**
      * Add world
