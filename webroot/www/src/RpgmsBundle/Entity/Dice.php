@@ -60,7 +60,6 @@ class Dice
         return $this->name;
     }
 
-
     /**
      * Get id
      *

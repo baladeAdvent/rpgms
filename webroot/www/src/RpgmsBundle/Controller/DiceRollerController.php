@@ -19,20 +19,19 @@ class DiceRollerController extends Controller
      */
     public function rollerAction(Request $request)
     {
-        $worldService = $this->get('rpgms.world_service');
         /**
          *  Need some sort of method/service to determine active world for this user, probably pull off the character being used
          *  For now using static variable
          */
-        $worldId = 1;
-        $world = $worldService->getWorld($worldId);
+        $worldService = $this->get('rpgms.world_service');
+        $world = $worldService->getWorldByName('testWorld');
 
-        $dice = $world->getDiceBag()->first();
+        $dice = $world->getDiceBag()->current();
         ladybug_dump($dice);
         
         $rollSet = new RollSet;
         
-        $roll = new Roll();
+        $roll = new Roll;
         $roll->setDice($dice);
         $roll->setRollSet($rollSet);
         

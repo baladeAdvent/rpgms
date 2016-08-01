@@ -22,12 +22,6 @@ class RollSet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    // Many rollsets, one world
-    /**
-     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollSets")
-     * @ORM\JoinColumn(name="world", referencedColumnName="id")
-     */
-    private $world;
 
     /**
      * @var \DateTime
@@ -63,7 +57,16 @@ class RollSet
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
+    
     //////////////
+
+    // Many rollsets, one world
+    /**
+     * @ORM\ManyToOne(targetEntity="World", inversedBy="rollSets")
+     * @ORM\JoinColumn(name="world", referencedColumnName="id")
+     */
+    private $world;
+    
     /**
      *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet")
      */

@@ -19,7 +19,6 @@ use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Entity\Dice;
 
-
 class RollType extends AbstractType
 {
 
@@ -28,11 +27,15 @@ class RollType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('dice');
+        /*
         $builder->add('Dice', CollectionType::class, array(
                     'entry_type' =>  DiceType::class,
                     'allow_add' => true,
                 ))
         ;
+         * 
+         */
         
     }
 

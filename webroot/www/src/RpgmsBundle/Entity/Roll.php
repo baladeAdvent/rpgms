@@ -28,6 +28,7 @@ class Roll
      * @ORM\Column(name="result", type="integer")
      */
     private $result;
+    
     //////////////////////////////////////////////////////////////////////
     // One Roll, One Dice
     /**
@@ -35,6 +36,7 @@ class Roll
      * @ORM\JoinColumn(name="dice", referencedColumnName="id")
      */
     private $dice;
+    
     // Many Rolls, One RollSet
     /**
      *  @ORM\ManyToOne(targetEntity="RollSet", inversedBy="rolls")
