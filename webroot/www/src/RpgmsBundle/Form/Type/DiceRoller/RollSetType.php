@@ -33,6 +33,8 @@ class RollSetType extends AbstractType
         $builder
                 ->add('Roll', CollectionType::class, array(
                     'entry_type' => RollType::class,
+                    'allow_add'    => true,
+                    'label' => false,
                 )
         );
         

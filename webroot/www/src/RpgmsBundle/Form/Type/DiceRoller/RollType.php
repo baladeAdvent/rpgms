@@ -33,6 +33,7 @@ class RollType extends AbstractType
                     'expanded' => true,
                     'multiple' => false,
                     'required' => true,
+                    'label' => false,
                 ))
         ;
 

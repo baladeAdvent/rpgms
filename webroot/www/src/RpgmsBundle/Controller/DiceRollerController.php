@@ -27,7 +27,6 @@ class DiceRollerController extends Controller
         $world = $worldService->getWorldByName('testWorld');
 
         $dice = $world->getDiceBag()->current();
-        ladybug_dump($dice);
         
         $rollSet = new RollSet;
         

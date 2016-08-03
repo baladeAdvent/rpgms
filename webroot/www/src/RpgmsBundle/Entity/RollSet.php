@@ -78,12 +78,6 @@ class RollSet
         $this->rolls = new ArrayCollection();
     }
 
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-
     /**
      * Get id
      *
