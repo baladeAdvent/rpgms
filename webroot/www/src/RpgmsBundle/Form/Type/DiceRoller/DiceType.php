@@ -31,6 +31,9 @@ class DiceType extends AbstractType
                       return $er->createQueryBuilder('d')->orderBy('d.name', 'DESC');
                     },
                     'choice_label' => 'name',
+                    'choice_attr' => function($val, $key, $index) {
+                      return ['class' => 'col-xs-1'];  
+                    },
                 ));
     }
 

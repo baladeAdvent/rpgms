@@ -17,14 +17,64 @@
     </div>
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="Rolls" data-prototype="{{ form_widget(form.Roll.vars.prototype)|e('html_attr') }}">
+            <ul class="rolls" data-prototype="{{ form_widget(form.Roll.vars.prototype)|e('html_attr') }}">
                 {% for roll in form.Roll %}
                     <li>{{ form_row(roll, {'label': false}) }}</li>
-                    {{ dump(form.Roll) }}
                 {% endfor %}
             </ul>
         </div>
     </div>
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <button class="btn btn-default btn-block addDice" disabled>Add Dice</button>
+        </div>
+    </div>
     {{ form_end(form) }}
-
+    {{ dump(form.Roll) }}
+    <script>
+        jQuery(document).ready(function()
+        {
+            // UL that contains all the rolls
+            $collectionHolder = $('ul.rolls');
+            
+            // Add remove roll link
+            $collectionHolder.find('li').each(function() {
+                addRemoveRollFormLink($(this));
+            });
+            
+            // get current number of rolls
+            $collectionHolder.data('index', $collectionHolder.find(':input'.length));
+            
+            // Bind onclick to add dice button
+            $('button.addDice').attr('disabled', false).on('click', function(e){
+                e.preventDefault();
+                addRollForm($collectionHolder);
+            });
+        });
+        
+        function addRollForm($collectionHolder)
+        {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            console.log( $collectionHolder.data('index') );
+            
+            var newForm = prototype.replace(/__name__/g, index);
+            $collectionHolder.data('index', index + 1);
+            
+            var $newFormLi = $('<li></li>').append(newForm);
+            $('ul.rolls').append($newFormLi);
+            addRemoveRollFormLink($newFormLi);
+        }
+        
+        function addRemoveRollFormLink($rollLinkLi)
+        {
+            var $removeFormA = $('<a href="#">x</a>');
+            $rollLinkLi.append($removeFormA);
+            
+            $removeFormA.on('click', function(e){
+                e.preventDefault()
+                $rollLinkLi.remove();
+            });
+        }
+    </script>
 {% endblock %}
