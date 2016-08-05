@@ -59,6 +59,27 @@ class LoadDefaultDice extends AbstractFixture implements OrderedFixtureInterface
         $dice->setMinRange(1);
         $dice->setMaxRange(100);
         $manager->persist($dice);
+
+        // D200
+        $dice = new Dice();
+        $dice->setName('D200');
+        $dice->setMinRange(1);
+        $dice->setMaxRange(200);
+        $manager->persist($dice);
+
+        // D300
+        $dice = new Dice();
+        $dice->setName('D300');
+        $dice->setMinRange(1);
+        $dice->setMaxRange(300);
+        $manager->persist($dice);
+
+        // D400
+        $dice = new Dice();
+        $dice->setName('D400');
+        $dice->setMinRange(1);
+        $dice->setMaxRange(400);
+        $manager->persist($dice);
         
         $manager->flush();
     }

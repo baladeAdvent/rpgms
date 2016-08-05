@@ -6,20 +6,25 @@
     Dice Roller Form
     {{ form_start(form) }}
     <div class="row form-group">
-        <div class="col-xs-1">{{ form_label(form.Action) }}</div>
-        <div class="col-xs-11">{{ form_widget(form.Action, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-1">{{ form_label(form.action) }}</div>
+        <div class="col-xs-11">{{ form_widget(form.action, {'attr': {'class': 'form-control'}}) }}</div>
     </div>
     <div class="row form-group">
-        <div class="col-xs-1">{{ form_label(form.Bonus) }}</div>
-        <div class="col-xs-5">{{ form_widget(form.Bonus, {'attr': {'class': 'form-control'}}) }}</div>
-        <div class="col-xs-1">{{ form_label(form.Penalty) }}</div>
-        <div class="col-xs-5">{{ form_widget(form.Penalty, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-1">{{ form_label(form.bonus) }}</div>
+        <div class="col-xs-5">{{ form_widget(form.bonus, {'attr': {'class': 'form-control'}}) }}</div>
+        <div class="col-xs-1">{{ form_label(form.penalty) }}</div>
+        <div class="col-xs-5">{{ form_widget(form.penalty, {'attr': {'class': 'form-control'}}) }}</div>
     </div>
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="rolls" data-prototype="{{ form_widget(form.Roll.vars.prototype)|e('html_attr') }}">
-                {% for roll in form.Roll %}
-                    <li>{{ form_row(roll, {'label': false}) }}</li>
+            <ul class="rolls" data-prototype="{{ form_widget(form.roll.vars.prototype)|e('html_attr') }}">
+                {% for roll in form.roll %}
+                    <li>{{ form_row(roll, {'label': false}) }}
+                        {% for dice in roll.dice %}
+                        {{ form_label(dice) }} {{ form_widget(dice) }}
+                        {{ dump(dice) }}
+                        {% endfor %}
+                    </li>
                 {% endfor %}
             </ul>
         </div>
@@ -30,7 +35,6 @@
         </div>
     </div>
     {{ form_end(form) }}
-    {{ dump(form.Roll) }}
     <script>
         jQuery(document).ready(function()
         {

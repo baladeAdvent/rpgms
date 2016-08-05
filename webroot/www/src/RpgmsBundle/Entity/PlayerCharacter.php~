@@ -60,7 +60,7 @@ class PlayerCharacter
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -142,11 +142,11 @@ class PlayerCharacter
     /**
      * Set world
      *
-     * @param integer $world
+     * @param \RpgmsBundle\Entity\World $world
      *
      * @return PlayerCharacter
      */
-    public function setWorld($world)
+    public function setWorld(\RpgmsBundle\Entity\World $world = null)
     {
         $this->world = $world;
 
@@ -156,7 +156,7 @@ class PlayerCharacter
     /**
      * Get world
      *
-     * @return int
+     * @return \RpgmsBundle\Entity\World
      */
     public function getWorld()
     {

@@ -20,10 +20,10 @@ class WorldService
         $this->em = $em;
     }
 
-    public function getDiceBag($worldId)
+    public function getDice($worldId)
     {
         $world = $this->em->getRepository('RpgmsBundle:World')->findOneById($worldId);
-        return $world->getDiceBag();
+        return $world->getDice();
     }
 
     public function getWorldById($Id)

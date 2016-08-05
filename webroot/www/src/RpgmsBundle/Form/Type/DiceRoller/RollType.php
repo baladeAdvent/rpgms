@@ -28,7 +28,7 @@ class RollType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $builder->add('Dice', EntityType::class, array(
+        $builder->add('dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'expanded' => true,
                     'multiple' => false,

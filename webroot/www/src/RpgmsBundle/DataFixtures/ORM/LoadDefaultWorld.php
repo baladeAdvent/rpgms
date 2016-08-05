@@ -32,8 +32,12 @@ class LoadDefaultWorld extends AbstractFixture implements OrderedFixtureInterfac
         $world->setDescription('sample world for testing');
         $world->setDate(new \DateTime('NOW'));
         
+        $x = 0;
         foreach($die as $dice){
-            $world->addDice($dice);
+            if($x < 8){
+                $world->addDice($dice);
+                $x++;
+            }
         }
         $manager->persist($world);
         $manager->flush();

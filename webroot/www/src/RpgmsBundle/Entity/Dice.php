@@ -46,18 +46,16 @@ class Dice
     ////////////
     // Many dice to many dice bags
     /**
-     * @ORM\ManyToMany(targetEntity="World", mappedBy="diceBag")
+     * @ORM\ManyToMany(targetEntity="World", mappedBy="dice")
      */
     private $worlds;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->worlds = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return $this->name;
+        $this->worlds = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -174,5 +172,10 @@ class Dice
     public function getWorlds()
     {
         return $this->worlds;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

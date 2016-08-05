@@ -6,16 +6,6 @@ namespace RpgmsBundle\Entity;
 class Tag
 {
     private $name;
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
     
     public function addTask(Task $task)
     {

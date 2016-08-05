@@ -72,10 +72,12 @@ class RollSet
      */
     private $rolls;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->date = new \DateTime();
-        $this->rolls = new ArrayCollection();
+        $this->rolls = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -265,7 +267,7 @@ class RollSet
     {
         return $this->rolls;
     }
-    
+
     /**
      * Get rolls
      *

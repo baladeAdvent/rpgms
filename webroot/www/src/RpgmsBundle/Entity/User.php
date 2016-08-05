@@ -47,24 +47,6 @@ class User extends BaseUser
      */
     private $characters;
     
-    
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-        $this->characters = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set firstName
@@ -115,40 +97,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add character
-     *
-     * @param \RpgmsBundle\Entity\PlayerCharacter $character
-     *
-     * @return User
-     */
-    public function addCharacter(\RpgmsBundle\Entity\PlayerCharacter $character)
-    {
-        $this->characters[] = $character;
-
-        return $this;
-    }
-
-    /**
-     * Remove character
-     *
-     * @param \RpgmsBundle\Entity\PlayerCharacter $character
-     */
-    public function removeCharacter(\RpgmsBundle\Entity\PlayerCharacter $character)
-    {
-        $this->characters->removeElement($character);
-    }
-
-    /**
-     * Get characters
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCharacters()
-    {
-        return $this->characters;
-    }
-
-    /**
      * Add world
      *
      * @param \RpgmsBundle\Entity\World $world
@@ -180,5 +128,39 @@ class User extends BaseUser
     public function getWorlds()
     {
         return $this->worlds;
+    }
+
+    /**
+     * Add character
+     *
+     * @param \RpgmsBundle\Entity\PlayerCharacter $character
+     *
+     * @return User
+     */
+    public function addCharacter(\RpgmsBundle\Entity\PlayerCharacter $character)
+    {
+        $this->characters[] = $character;
+
+        return $this;
+    }
+
+    /**
+     * Remove character
+     *
+     * @param \RpgmsBundle\Entity\PlayerCharacter $character
+     */
+    public function removeCharacter(\RpgmsBundle\Entity\PlayerCharacter $character)
+    {
+        $this->characters->removeElement($character);
+    }
+
+    /**
+     * Get characters
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCharacters()
+    {
+        return $this->characters;
     }
 }

@@ -27,11 +27,11 @@ class RollSetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Action');
-        $builder->add('Bonus');
-        $builder->add('Penalty');
+        $builder->add('action');
+        $builder->add('bonus');
+        $builder->add('penalty');
         $builder
-                ->add('Roll', CollectionType::class, array(
+                ->add('roll', CollectionType::class, array(
                     'entry_type' => RollType::class,
                     'allow_add'    => true,
                     'allow_delete' => true,
@@ -44,6 +44,7 @@ class RollSetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\RollSet',
+            'world_id' => 1
         ));
     }
 }

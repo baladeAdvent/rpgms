@@ -54,7 +54,7 @@ class World
      * @ORM\ManyToMany(targetEntity="Dice", inversedBy="worlds")
      * @ORM\JoinTable(name="world_dice")
      */
-    private $diceBag;
+    private $dice;
     
     // One World, Many Characters
     /**
@@ -68,15 +68,15 @@ class World
      */
     private $rollSets;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->diceBag = new ArrayCollection();
-        $this->playerCharacters = new ArrayCollection();
-        $this->rollSets = new ArrayCollection();
-        
-        // Set generic D20 dice in Dicebag
+        $this->dice = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->playerCharacters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rollSets = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -161,71 +161,61 @@ class World
     }
 
     /**
-     * Add diceBag
+     * Set gm
      *
-     * @param \RpgmsBundle\Entity\Dice $diceBag
+     * @param \RpgmsBundle\Entity\User $gm
      *
      * @return World
      */
-    public function addDice(\RpgmsBundle\Entity\Dice $diceBag)
+    public function setGm(\RpgmsBundle\Entity\User $gm = null)
     {
-        $this->diceBag[] = $diceBag;
+        $this->gm = $gm;
 
         return $this;
     }
 
     /**
-     * Remove diceBag
+     * Get gm
      *
-     * @param \RpgmsBundle\Entity\Dice $diceBag
+     * @return \RpgmsBundle\Entity\User
      */
-    public function removeDice(\RpgmsBundle\Entity\Dice $diceBag)
+    public function getGm()
     {
-        $this->diceBag->removeElement($diceBag);
+        return $this->gm;
     }
 
     /**
-     * Get diceBag
+     * Add dice
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDiceBag()
-    {
-        return $this->diceBag;
-    }
-
-    /**
-     * Add rollSet
-     *
-     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     * @param \RpgmsBundle\Entity\Dice $dice
      *
      * @return World
      */
-    public function addRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    public function addDice(\RpgmsBundle\Entity\Dice $dice)
     {
-        $this->rollSets[] = $rollSet;
+        $this->dice[] = $dice;
 
         return $this;
     }
 
     /**
-     * Remove rollSet
+     * Remove dice
      *
-     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     * @param \RpgmsBundle\Entity\Dice $dice
      */
-    public function removeRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    public function removeDice(\RpgmsBundle\Entity\Dice $dice)
     {
-        $this->rollSets->removeElement($rollSet);
+        $this->dice->removeElement($dice);
     }
 
     /**
-     * Get rollSets
+     * Get dice
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getRollSets()
+    public function getDice()
     {
-        return $this->rollSets;
+        return $this->dice;
     }
 
     /**
@@ -263,50 +253,36 @@ class World
     }
 
     /**
-     * Set gm
+     * Add rollSet
      *
-     * @param \RpgmsBundle\Entity\User $gm
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
      *
      * @return World
      */
-    public function setGm(\RpgmsBundle\Entity\User $gm = null)
+    public function addRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
     {
-        $this->gm = $gm;
+        $this->rollSets[] = $rollSet;
 
         return $this;
     }
 
     /**
-     * Get gm
+     * Remove rollSet
      *
-     * @return \RpgmsBundle\Entity\User
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
      */
-    public function getGm()
+    public function removeRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
     {
-        return $this->gm;
+        $this->rollSets->removeElement($rollSet);
     }
 
     /**
-     * Add diceBag
+     * Get rollSets
      *
-     * @param \RpgmsBundle\Entity\Dice $diceBag
-     *
-     * @return World
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function addDiceBag(\RpgmsBundle\Entity\Dice $diceBag)
+    public function getRollSets()
     {
-        $this->diceBag[] = $diceBag;
-
-        return $this;
-    }
-
-    /**
-     * Remove diceBag
-     *
-     * @param \RpgmsBundle\Entity\Dice $diceBag
-     */
-    public function removeDiceBag(\RpgmsBundle\Entity\Dice $diceBag)
-    {
-        $this->diceBag->removeElement($diceBag);
+        return $this->rollSets;
     }
 }

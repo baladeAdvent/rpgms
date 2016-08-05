@@ -46,18 +46,131 @@ class Dice
     ////////////
     // Many dice to many dice bags
     /**
-     * @ORM\ManyToMany(targetEntity="World", mappedBy="diceBag")
+     * @ORM\ManyToMany(targetEntity="World", mappedBy="dice")
      */
     private $worlds;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->worlds = new ArrayCollection();
+        $this->worlds = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function __toString()
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Dice
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * Set minRange
+     *
+     * @param integer $minRange
+     *
+     * @return Dice
+     */
+    public function setMinRange($minRange)
+    {
+        $this->minRange = $minRange;
+
+        return $this;
+    }
+
+    /**
+     * Get minRange
+     *
+     * @return integer
+     */
+    public function getMinRange()
+    {
+        return $this->minRange;
+    }
+
+    /**
+     * Set maxRange
+     *
+     * @param integer $maxRange
+     *
+     * @return Dice
+     */
+    public function setMaxRange($maxRange)
+    {
+        $this->maxRange = $maxRange;
+
+        return $this;
+    }
+
+    /**
+     * Get maxRange
+     *
+     * @return integer
+     */
+    public function getMaxRange()
+    {
+        return $this->maxRange;
+    }
+
+    /**
+     * Add world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     *
+     * @return Dice
+     */
+    public function addWorld(\RpgmsBundle\Entity\World $world)
+    {
+        $this->worlds[] = $world;
+
+        return $this;
+    }
+
+    /**
+     * Remove world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     */
+    public function removeWorld(\RpgmsBundle\Entity\World $world)
+    {
+        $this->worlds->removeElement($world);
+    }
+
+    /**
+     * Get worlds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWorlds()
+    {
+        return $this->worlds;
+    }
 }

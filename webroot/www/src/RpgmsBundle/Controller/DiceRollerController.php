@@ -26,7 +26,7 @@ class DiceRollerController extends Controller
         $worldService = $this->get('rpgms.world_service');
         $world = $worldService->getWorldByName('testWorld');
 
-        $dice = $world->getDiceBag()->current();
+        $dice = $world->getDice()->current();
         
         $rollSet = new RollSet;
         
