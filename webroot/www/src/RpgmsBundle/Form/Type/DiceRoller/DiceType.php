@@ -28,7 +28,7 @@ class DiceType extends AbstractType
                         return $er->createQueryBuilder('d')
                                 ->where('d.world = :world')
                                 ->orderBy('d.name', 'DESC')
-                                ->setParameter('world', 1);
+                                ->setParameter('world', $options['world_id']);
                     },
                     'choice_label' => 'name',
         ));
