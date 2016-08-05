@@ -27,9 +27,17 @@ class RollType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        ladybug_dump($options['world_id']);
+        $worldId = $options['world_id'];
         $builder->add('dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
+                    'query_builder' => function (EntityRepository $er)  use ($worldId){
+                        global $options;
+                        return $er->createQueryBuilder('d')
+                                ->where(':world MEMBER OF d.world')
+                                ->orderBy('d.name', 'DESC')
+                                ->setParameter('world', $worldId);
+                    },
                     'expanded' => true,
                     'multiple' => false,
                     'required' => true,
@@ -43,7 +51,7 @@ class RollType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\Roll',
-            'world_id' => 1
+            'world_id' => 3
         ));
     }
 }

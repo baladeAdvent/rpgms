@@ -22,7 +22,7 @@
                     <li>{{ form_row(roll, {'label': false}) }}
                         {% for dice in roll.dice %}
                         {{ form_label(dice) }} {{ form_widget(dice) }}
-                        {{ dump(dice) }}
+                        
                         {% endfor %}
                     </li>
                 {% endfor %}

@@ -27,6 +27,7 @@ class RollSetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        ladybug_dump($options['world_id']);
         $builder->add('action');
         $builder->add('bonus');
         $builder->add('penalty');

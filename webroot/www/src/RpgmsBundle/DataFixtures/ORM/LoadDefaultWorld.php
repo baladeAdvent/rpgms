@@ -34,7 +34,7 @@ class LoadDefaultWorld extends AbstractFixture implements OrderedFixtureInterfac
         
         $x = 0;
         foreach($die as $dice){
-            if($x < 8){
+            if($x < 7){
                 $world->addDice($dice);
                 $x++;
             }
