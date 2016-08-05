@@ -43,7 +43,7 @@
             });
             
             // get current number of rolls
-            $collectionHolder.data('index', $collectionHolder.find(':input'.length));
+            $collectionHolder.data('index', $collectionHolder.find('li').length);
             
             // Bind onclick to add dice button
             $('button.addDice').attr('disabled', false).on('click', function(e){
