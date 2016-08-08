@@ -17,15 +17,14 @@
     </div>
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="rolls" data-prototype="{{ form_widget(form.roll.vars.prototype)|e('html_attr') }}">
-                {% for roll in form.roll %}
-                    <li>{{ form_row(roll, {'label': false}) }}
-                        {% for dice in roll.dice %}
-                        {{ form_label(dice) }} {{ form_widget(dice) }}
-                        
-                        {% endfor %}
+            <ul class="rolls" data-prototype="{{ form_widget(form.rolls.vars.prototype)|e('html_attr') }}">
+                {% for roll in form.rolls %}
+                    <li style="overflow:auto;">
+                        {{ include('RpgmsBundle:prototypes:diceFields.html.twig', { 'form': roll }) }}
                     </li>
+                    {{ dump(form)}}
                 {% endfor %}
+                {{ dump(form.rolls.vars.prototype) }}
             </ul>
         </div>
     </div>

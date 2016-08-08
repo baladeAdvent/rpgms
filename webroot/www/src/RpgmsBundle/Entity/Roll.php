@@ -106,6 +106,16 @@ class Roll
     }
 
     /**
+     * Get dice
+     *
+     * @return \RpgmsBundle\Entity\Dice
+     */
+    public function getDices()
+    {
+        return $this->dice;
+    }
+
+    /**
      * Set rollSet
      *
      * @param \RpgmsBundle\Entity\RollSet $rollSet

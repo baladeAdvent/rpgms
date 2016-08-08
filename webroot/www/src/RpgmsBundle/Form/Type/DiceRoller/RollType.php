@@ -21,22 +21,21 @@ use RpgmsBundle\Entity\Dice;
 
 class RollType extends AbstractType
 {
+    private $world;
 
     /**
      * One roll set will have any number of Rolls which will contain 1 dice
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        ladybug_dump($options['world_id']);
-        $worldId = $options['world_id'];
-        $builder->add('dice', EntityType::class, array(
+        $worldId = $options['world'];
+        $builder->add('dices', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
-                    'query_builder' => function (EntityRepository $er)  use ($worldId){
-                        global $options;
+                    'query_builder' => function (EntityRepository $er) use ($worldId){
                         return $er->createQueryBuilder('d')
-                                ->where(':world MEMBER OF d.world')
-                                ->orderBy('d.name', 'DESC')
-                                ->setParameter('world', $worldId);
+                                ->where(':world MEMBER OF d.worlds')
+                                ->setParameter('world', $worldId)
+                                ->addOrderBy('d.maxRange', 'ASC');
                     },
                     'expanded' => true,
                     'multiple' => false,
@@ -51,7 +50,8 @@ class RollType extends AbstractType
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\Roll',
-            'world_id' => 3
+            'world' => null,
+            'inherit_data' => true,
         ));
     }
 }
