@@ -1,0 +1,16 @@
+<li>
+    <div class="row">
+        <div class="col-xs-11">
+{% for dice in form.dices %}
+        <span style="padding: 0 5px 0 0;">
+            {{ form_widget(dice) }} {{ form_label(dice) }} 
+        </span>  
+{% endfor %}
+        </div>
+        <div class="col-xs-1 text-right">
+            <a href="#" class="remove"><i class="glyphicon glyphicon-remove"></i></a>        
+        </div>
+    
+    </div>
+</li>
+    

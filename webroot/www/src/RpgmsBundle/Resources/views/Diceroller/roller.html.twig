@@ -17,14 +17,10 @@
     </div>
     <div class="row form-group">
         <div class="col-xs-12">
-            <ul class="rolls" data-prototype="{{ form_widget(form.rolls.vars.prototype)|e('html_attr') }}">
+            <ul class="rolls" data-prototype="{% filter escape %}{% include 'RpgmsBundle:prototypes:diceroller_roll.html.twig' with { 'form': form.rolls.vars.prototype } %}{% endfilter %}">
                 {% for roll in form.rolls %}
-                    <li style="overflow:auto;">
-                        {{ include('RpgmsBundle:prototypes:diceFields.html.twig', { 'form': roll }) }}
-                    </li>
-                    {{ dump(form)}}
+                        {{ include('RpgmsBundle:prototypes:diceroller_roll.html.twig', { 'form': roll }) }}
                 {% endfor %}
-                {{ dump(form.rolls.vars.prototype) }}
             </ul>
         </div>
     </div>
@@ -64,17 +60,14 @@
             var newForm = prototype.replace(/__name__/g, index);
             $collectionHolder.data('index', index + 1);
             
-            var $newFormLi = $('<li></li>').append(newForm);
+            var $newFormLi = $(newForm)
             $('ul.rolls').append($newFormLi);
             addRemoveRollFormLink($newFormLi);
         }
         
         function addRemoveRollFormLink($rollLinkLi)
         {
-            var $removeFormA = $('<a href="#">x</a>');
-            $rollLinkLi.append($removeFormA);
-            
-            $removeFormA.on('click', function(e){
+            $rollLinkLi.find('.remove').on('click', function(e){
                 e.preventDefault()
                 $rollLinkLi.remove();
             });
