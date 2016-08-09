@@ -43,6 +43,10 @@ class RollSetType extends AbstractType
                     'label' => false,
                 )
         );
+        $builder->add('save', SubmitType::class, array(
+            'label' => 'Submit',
+            'attr' => array('class' => 'btn btn-default btn-block')
+        ));
         
     }
 
