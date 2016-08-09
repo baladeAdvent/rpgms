@@ -39,11 +39,35 @@ class DiceRollerController extends Controller
         $form = $this->createForm(RollSetType::class, $rollSet, array(
             'world' => $world->getId(),
         ));
+
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $rollSet = $form->getData();
+            ladybug_dump($form);
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $em = $this->getDoctrine()->getManager();
+            // $em->persist($task);
+            // $em->flush();
+
+            #return $this->redirectToRoute('task_success');
+        }
         
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
             'form' => $form->createView()
         ),null,null);
+    }
+
+    /**
+     * @Route("/dice_submit", name="Roll Processing")
+     */
+    public function rollSubmitAction(Request $request)
+    {
+        
     }
 
 }

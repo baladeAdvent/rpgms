@@ -5,6 +5,7 @@
 
     Dice Roller Form
     {{ form_start(form) }}
+    {{ form_widget(form.world) }}
     <div class="row form-group">
         <div class="col-xs-1">{{ form_label(form.action) }}</div>
         <div class="col-xs-11">{{ form_widget(form.action, {'attr': {'class': 'form-control'}}) }}</div>

@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Doctrine\ORM\EntityRepository;
@@ -29,9 +30,19 @@ class RollSetType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('action', TextType::class, array());
-        $builder->add('bonus', NumberType::class, array());
-        $builder->add('penalty', NumberType::class, array());
+        $builder->add('action', TextType::class, array(
+            'required' => true,
+            'trim' => true,
+            'attr' => ['placeholder'=>'Insert Roll Action Text...'],
+        ));
+        $builder->add('bonus', NumberType::class, array(
+            'required' => false,
+            'empty_data' => 0,
+        ));
+        $builder->add('penalty', NumberType::class, array(
+            'required' => false,
+            'empty_data' => 0,
+        ));
         $builder
                 ->add('rolls', CollectionType::class, array(
                     'entry_type' => RollType::class,
@@ -41,8 +52,12 @@ class RollSetType extends AbstractType
                     'allow_add'    => true,
                     'allow_delete' => true,
                     'label' => false,
+                    'required' => true,
                 )
         );
+        #$builder->add('world', HiddenType::class, array(
+        #    'data' => $options['world'],
+        #));
         $builder->add('save', SubmitType::class, array(
             'label' => 'Submit',
             'attr' => array('class' => 'btn btn-default btn-block')
