@@ -37,7 +37,7 @@ class DiceRollerController extends Controller
         $rollSet->addRoll($roll);
         
         $form = $this->createForm(RollSetType::class, $rollSet, array(
-            'world' => $world->getId(),
+            'world' => $world,
         ));
 
         $form->handleRequest($request);

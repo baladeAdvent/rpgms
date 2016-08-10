@@ -28,7 +28,7 @@ class RollType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $worldId = $options['world'];
+        $worldId = $options['world']->getId();
         $builder->add('dices', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'query_builder' => function (EntityRepository $er) use ($worldId){

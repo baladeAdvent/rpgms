@@ -37,11 +37,11 @@ class RollSetType extends AbstractType
         ));
         $builder->add('bonus', NumberType::class, array(
             'required' => false,
-            'empty_data' => 0,
+            'empty_data' => '0',
         ));
         $builder->add('penalty', NumberType::class, array(
             'required' => false,
-            'empty_data' => 0,
+            'empty_data' => '0',
         ));
         $builder
                 ->add('rolls', CollectionType::class, array(
@@ -56,7 +56,7 @@ class RollSetType extends AbstractType
                 )
         );
         #$builder->add('world', HiddenType::class, array(
-        #    'data' => $options['world'],
+        #    'data' => $options['world']->getId(),
         #));
         $builder->add('save', SubmitType::class, array(
             'label' => 'Submit',
