@@ -1,5 +1,5 @@
 <?php
-// src/RpgmsBundla/Form/DataTransformer/IssueToNumberTransformer.php
+// src/RpgmsBundla/Form/DataTransformer/WorldToIdTransformer.php
 namespace RpgmsBundle\Form\DataTransformer;
 
 use RpgmsBundle\Entity\World;

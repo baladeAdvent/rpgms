@@ -61,14 +61,14 @@ class RollSetType extends AbstractType
                     'required' => true,
                         )
         );
-        $builder->add('world', HiddenType::class, array(
+        $builder->add('world', TextType::class, array(
             'data' => $options['world'],
         ));
         $builder->add('save', SubmitType::class, array(
             'label' => 'Submit',
             'attr' => array('class' => 'btn btn-default btn-block')
         ));
-        $builder->get('world')->addModelTransformer(new WorldToIdTransformer($this->manager));
+        #$builder->get('world')->addModelTransformer(new WorldToIdTransformer($this->manager));
     }
 
     public function configureOptions(OptionsResolver $resolver)
