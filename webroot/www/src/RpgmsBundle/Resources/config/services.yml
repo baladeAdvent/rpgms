@@ -6,3 +6,9 @@ services:
     rpgms.world_service:
         class: RpgmsBundle\Helper\WorldService
         arguments: ["@doctrine.orm.entity_manager"]
+        
+    app.form.type.rollset:
+        class: RpgmsBundle\Form\Type\DiceRoller\RollSetType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }

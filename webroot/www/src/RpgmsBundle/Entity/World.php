@@ -285,4 +285,9 @@ class World
     {
         return $this->rollSets;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
