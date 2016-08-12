@@ -35,7 +35,7 @@ class RollSetType extends AbstractType
      * Roll Set will generate any number of rolls
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {        
         $builder->add('action', TextType::class, array(
             'required' => true,
             'trim' => true,
@@ -53,22 +53,25 @@ class RollSetType extends AbstractType
                 ->add('rolls', CollectionType::class, array(
                     'entry_type' => RollType::class,
                     'entry_options' => array(
-                        'world' => $options['world']
+                        'world' => $options['world']->getId()
                     ),
                     'allow_add' => true,
                     'allow_delete' => true,
+                    'by_reference' => false,
                     'label' => false,
                     'required' => true,
                         )
         );
-        $builder->add('world', TextType::class, array(
-            'data' => $options['world'],
+        $builder->add('world', HiddenType::class, array(
+            'data' => $options['world']->getId(),
         ));
         $builder->add('save', SubmitType::class, array(
             'label' => 'Submit',
             'attr' => array('class' => 'btn btn-default btn-block')
         ));
-        #$builder->get('world')->addModelTransformer(new WorldToIdTransformer($this->manager));
+        
+        // More than meets the eye
+        $builder->get('world')->addModelTransformer(new WorldToIdTransformer($this->manager));
     }
 
     public function configureOptions(OptionsResolver $resolver)

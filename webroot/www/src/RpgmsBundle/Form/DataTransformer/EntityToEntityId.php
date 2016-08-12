@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class WorldToIdTransformer implements DataTransformerInterface
+class EntityToEntityId implements DataTransformerInterface
 {
     private $manager;
 
@@ -17,51 +17,50 @@ class WorldToIdTransformer implements DataTransformerInterface
     }
     
     /**
-     * Transforms an object (world) to a string (number).
+     * Transforms an object (entity) to a string (number).
      *
-     * @param  World|null $world
      * @return string
      */
-    public function transform($world)
+    public function transform($entity)
     {
-        if (null === $world) {
+        if (null === $entity) {
             return '';
         }
 
-        return $world;
+        return $entity->getId();
     }
 
     /**
-     * Transforms a string (world) to an object (issue).
+     * Transforms a string (entity) to an object (issue).
      *
-     * @param  string $worldId
-     * @return World|null
+     * @param  string $entityId
      * @throws TransformationFailedException if object (world) is not found.
      */
-    public function reverseTransform($worldId)
+    public function reverseTransform($entityId)
     {
+        ladybug_dump('transform back!');
         // no issue number? It's optional, so that's ok
-        if (!$worldId) {
+        if (!$entityId) {
             return;
         }
 
-        $world = $this->manager
+        $entity = $this->manager
             ->getRepository('RpgmsBundle:World')
             // query for the world with this id
-            ->find($worldId)
+            ->find($entityId)
         ;
 
-        if (null === $world) {
+        if (null === $entity) {
             // causes a validation error
             // this message is not shown to the user
             // see the invalid_message option
             throw new TransformationFailedException(sprintf(
                 'An issue with number "%s" does not exist!',
-                $worldId
+                $entityId
             ));
         }
 
-        return $world;
+        return $entity;
     }
     public function getParent()
     {

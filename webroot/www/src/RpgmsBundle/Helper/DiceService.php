@@ -28,6 +28,11 @@ class DiceService
         
         return rand($dice->getMinRange(), $dice->getMaxRange());
     }
+    
+    public function setRollSet($form, $worldId)
+    {
+        
+    }
 
     /**
      *  Methods:
