@@ -124,7 +124,12 @@ class Roll
      */
     public function setRollSet(\RpgmsBundle\Entity\RollSet $rollSet = null)
     {
-        $this->rollSet = $rollSet;
+        dump('Add Rollset!');
+        #if(!$this->rollSet->contains($rollset))
+        #{
+            // set rollset
+            $this->rollSet = $rollSet;
+        #}
 
         return $this;
     }

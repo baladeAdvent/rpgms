@@ -32,7 +32,6 @@ class DiceRollerController extends Controller
         $roll = new Roll;
         $roll->setDice($dice);
         $roll->setRollSet($rollSet);
-
         $rollSet->addRoll($roll);
 
         $form = $this->createForm(RollSetType::class, $rollSet, array(
@@ -47,13 +46,10 @@ class DiceRollerController extends Controller
                 
                 // $form->getData() holds the submitted values
                 // but, the original `$task` variable has also been updated
-                $rollSet = $form->getData();
-                ladybug_dump( $rollSet->getRolls() );
-                $rolls = $rollSet->getRolls();
-                foreach($rolls as $roll){
-                    
-                    ladybug_dump( $roll );
-                }
+                $formData = $form->getData();
+                ladybug_dump( $formData );
+                $rolls = $formData->getRoll();
+                ladybug_dump($rolls->count());
                 // ... perform some action, such as saving the task to the database
                 // for example, if Task is a Doctrine entity, save it!
                 // $em = $this->getDoctrine()->getManager();
@@ -66,8 +62,11 @@ class DiceRollerController extends Controller
         }
 
         return $this->render('RpgmsBundle:Diceroller:roller.html.twig', array(
-                    'form' => $form->createView()
-                        ), null, null);
+                'form' => $form->createView()
+                ), 
+                null, 
+                null
+        );
     }
 
     /**

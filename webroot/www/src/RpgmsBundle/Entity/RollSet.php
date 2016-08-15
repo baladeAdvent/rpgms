@@ -68,7 +68,7 @@ class RollSet
     private $world;
     
     /**
-     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet")
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet",  cascade={"persist"})
      */
     private $rolls;
 
@@ -243,6 +243,11 @@ class RollSet
      */
     public function addRoll(\RpgmsBundle\Entity\Roll $roll)
     {
+        dump('adding roll!');
+        // Add this rollset to the roll
+        #$roll->setRollSet($this);
+        
+        // Add this roll to rollset
         $this->rolls[] = $roll;
 
         return $this;

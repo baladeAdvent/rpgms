@@ -29,7 +29,7 @@ class RollType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $worldId = $options['world'];
-        $builder->add('dices', EntityType::class, array(
+        $builder->add('dice', EntityType::class, array(
                     'class' => 'RpgmsBundle:Dice',
                     'query_builder' => function (EntityRepository $er) use ($worldId){
                         return $er->createQueryBuilder('d')
@@ -51,7 +51,6 @@ class RollType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'RpgmsBundle\Entity\Roll',
             'world' => null,
-            'inherit_data' => true,
         ));
     }
 }
