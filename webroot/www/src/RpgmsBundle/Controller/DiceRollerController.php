@@ -22,6 +22,8 @@ class DiceRollerController extends Controller
          *  Need some sort of method/service to determine active world for this user, probably pull off the character being used
          *  For now using static variable
          */
+        
+        $diceService = $this->get('rpgms.dice_service');
         $worldService = $this->get('rpgms.world_service');
         $world = $worldService->getWorldByName('testWorld');
 
@@ -42,20 +44,7 @@ class DiceRollerController extends Controller
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                // Form is valid
-                
-                // $form->getData() holds the submitted values
-                // but, the original `$task` variable has also been updated
-                $formData = $form->getData();
-                ladybug_dump( $formData );
-                $rolls = $formData->getRoll();
-                ladybug_dump($rolls->count());
-                // ... perform some action, such as saving the task to the database
-                // for example, if Task is a Doctrine entity, save it!
-                // $em = $this->getDoctrine()->getManager();
-                // $em->persist($task);
-                // $em->flush();
-                #return $this->redirectToRoute('task_success');
+                $diceService->setRollSet($form, $world->getId());
             } else {
                 // Form is not valid
             }
