@@ -67,6 +67,12 @@ class RollSet
      */
     private $world;
     
+    // Many rollsets, One user
+    /**
+     * @ORM\ManyToOne(targetEntity="PlayerCharacter", inversedBy="rollSets")
+     * @ORM\JoinColumn(name="playercharacter", referencedColumnName="id")
+     */
+    private $playerCharacter;
     /**
      *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet",  cascade={"persist"})
      */
@@ -281,5 +287,29 @@ class RollSet
     public function getRoll()
     {
         return $this->rolls;
+    }
+
+    /**
+     * Set playerCharacter
+     *
+     * @param \RpgmsBundle\Entity\PlayerCharacter $playerCharacter
+     *
+     * @return RollSet
+     */
+    public function setPlayerCharacter(\RpgmsBundle\Entity\PlayerCharacter $playerCharacter = null)
+    {
+        $this->playerCharacter = $playerCharacter;
+
+        return $this;
+    }
+
+    /**
+     * Get playerCharacter
+     *
+     * @return \RpgmsBundle\Entity\PlayerCharacter
+     */
+    public function getPlayerCharacter()
+    {
+        return $this->playerCharacter;
     }
 }

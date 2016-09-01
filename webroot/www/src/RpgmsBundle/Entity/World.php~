@@ -68,4 +68,226 @@ class World
      */
     private $rollSets;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->dice = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->playerCharacters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rollSets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return World
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return World
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return World
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set gm
+     *
+     * @param \RpgmsBundle\Entity\User $gm
+     *
+     * @return World
+     */
+    public function setGm(\RpgmsBundle\Entity\User $gm = null)
+    {
+        $this->gm = $gm;
+
+        return $this;
+    }
+
+    /**
+     * Get gm
+     *
+     * @return \RpgmsBundle\Entity\User
+     */
+    public function getGm()
+    {
+        return $this->gm;
+    }
+
+    /**
+     * Add dice
+     *
+     * @param \RpgmsBundle\Entity\Dice $dice
+     *
+     * @return World
+     */
+    public function addDice(\RpgmsBundle\Entity\Dice $dice)
+    {
+        $this->dice[] = $dice;
+
+        return $this;
+    }
+
+    /**
+     * Remove dice
+     *
+     * @param \RpgmsBundle\Entity\Dice $dice
+     */
+    public function removeDice(\RpgmsBundle\Entity\Dice $dice)
+    {
+        $this->dice->removeElement($dice);
+    }
+
+    /**
+     * Get dice
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDice()
+    {
+        return $this->dice;
+    }
+
+    /**
+     * Add playerCharacter
+     *
+     * @param \RpgmsBundle\Entity\PlayerCharacter $playerCharacter
+     *
+     * @return World
+     */
+    public function addPlayerCharacter(\RpgmsBundle\Entity\PlayerCharacter $playerCharacter)
+    {
+        $this->playerCharacters[] = $playerCharacter;
+
+        return $this;
+    }
+
+    /**
+     * Remove playerCharacter
+     *
+     * @param \RpgmsBundle\Entity\PlayerCharacter $playerCharacter
+     */
+    public function removePlayerCharacter(\RpgmsBundle\Entity\PlayerCharacter $playerCharacter)
+    {
+        $this->playerCharacters->removeElement($playerCharacter);
+    }
+
+    /**
+     * Get playerCharacters
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayerCharacters()
+    {
+        return $this->playerCharacters;
+    }
+
+    /**
+     * Add rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     *
+     * @return World
+     */
+    public function addRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    {
+        $this->rollSets[] = $rollSet;
+
+        return $this;
+    }
+
+    /**
+     * Remove rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     */
+    public function removeRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    {
+        $this->rollSets->removeElement($rollSet);
+    }
+
+    /**
+     * Get rollSets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRollSets()
+    {
+        return $this->rollSets;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

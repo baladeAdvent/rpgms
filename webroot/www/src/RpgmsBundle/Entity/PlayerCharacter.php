@@ -55,6 +55,11 @@ class PlayerCharacter
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     private $user;
+    
+    /**
+     *  @ORM\OneToMany(targetEntity="RollSet", mappedBy="playerCharacter")
+     */
+    private $rollSets;
 
 
     /**
@@ -185,5 +190,46 @@ class PlayerCharacter
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rollSets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     *
+     * @return PlayerCharacter
+     */
+    public function addRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    {
+        $this->rollSets[] = $rollSet;
+
+        return $this;
+    }
+
+    /**
+     * Remove rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     */
+    public function removeRollSet(\RpgmsBundle\Entity\RollSet $rollSet)
+    {
+        $this->rollSets->removeElement($rollSet);
+    }
+
+    /**
+     * Get rollSets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRollSets()
+    {
+        return $this->rollSets;
     }
 }

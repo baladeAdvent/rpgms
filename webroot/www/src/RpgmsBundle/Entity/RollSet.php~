@@ -67,9 +67,225 @@ class RollSet
      */
     private $world;
     
+    // Many rollsets, One user
     /**
-     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet")
+     * @ORM\ManyToOne(targetEntity="PlayerCharacter", inversedBy="rollSets")
+     * @ORM\JoinColumn(name="playercharacter", referencedColumnName="id")
+     */
+    private $playerCharacter;
+    /**
+     *  @ORM\OneToMany(targetEntity="Roll", mappedBy="rollSet",  cascade={"persist"})
      */
     private $rolls;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rolls = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return RollSet
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set action
+     *
+     * @param string $action
+     *
+     * @return RollSet
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * Set bonus
+     *
+     * @param integer $bonus
+     *
+     * @return RollSet
+     */
+    public function setBonus($bonus)
+    {
+        $this->bonus = $bonus;
+
+        return $this;
+    }
+
+    /**
+     * Get bonus
+     *
+     * @return integer
+     */
+    public function getBonus()
+    {
+        return $this->bonus;
+    }
+
+    /**
+     * Set penalty
+     *
+     * @param integer $penalty
+     *
+     * @return RollSet
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+
+        return $this;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return integer
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
+    }
+
+    /**
+     * Set result
+     *
+     * @param integer $result
+     *
+     * @return RollSet
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return integer
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Set world
+     *
+     * @param \RpgmsBundle\Entity\World $world
+     *
+     * @return RollSet
+     */
+    public function setWorld(\RpgmsBundle\Entity\World $world = null)
+    {
+        $this->world = $world;
+
+        return $this;
+    }
+
+    /**
+     * Get world
+     *
+     * @return \RpgmsBundle\Entity\World
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+
+    /**
+     * Add roll
+     *
+     * @param \RpgmsBundle\Entity\Roll $roll
+     *
+     * @return RollSet
+     */
+    public function addRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        dump('adding roll!');
+        // Add this rollset to the roll
+        #$roll->setRollSet($this);
+        
+        // Add this roll to rollset
+        $this->rolls[] = $roll;
+
+        return $this;
+    }
+
+    /**
+     * Remove roll
+     *
+     * @param \RpgmsBundle\Entity\Roll $roll
+     */
+    public function removeRoll(\RpgmsBundle\Entity\Roll $roll)
+    {
+        $this->rolls->removeElement($roll);
+    }
+
+    /**
+     * Get rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRolls()
+    {
+        return $this->rolls;
+    }
+
+    /**
+     * Get rolls
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoll()
+    {
+        return $this->rolls;
+    }
 }

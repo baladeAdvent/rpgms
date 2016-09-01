@@ -173,4 +173,9 @@ class Dice
     {
         return $this->worlds;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

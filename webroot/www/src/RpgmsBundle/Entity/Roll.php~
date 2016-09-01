@@ -46,4 +46,101 @@ class Roll
 
     //////////////////////////////////////////////////////////////////////
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set result
+     *
+     * @param integer $result
+     *
+     * @return Roll
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return integer
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Set dice
+     *
+     * @param \RpgmsBundle\Entity\Dice $dice
+     *
+     * @return Roll
+     */
+    public function setDice(\RpgmsBundle\Entity\Dice $dice = null)
+    {
+        $this->dice = $dice;
+
+        return $this;
+    }
+
+    /**
+     * Get dice
+     *
+     * @return \RpgmsBundle\Entity\Dice
+     */
+    public function getDice()
+    {
+        return $this->dice;
+    }
+
+    /**
+     * Get dice
+     *
+     * @return \RpgmsBundle\Entity\Dice
+     */
+    public function getDices()
+    {
+        return $this->dice;
+    }
+
+    /**
+     * Set rollSet
+     *
+     * @param \RpgmsBundle\Entity\RollSet $rollSet
+     *
+     * @return Roll
+     */
+    public function setRollSet(\RpgmsBundle\Entity\RollSet $rollSet = null)
+    {
+        dump('Add Rollset!');
+        #if(!$this->rollSet->contains($rollset))
+        #{
+            // set rollset
+            $this->rollSet = $rollSet;
+        #}
+
+        return $this;
+    }
+
+    /**
+     * Get rollSet
+     *
+     * @return \RpgmsBundle\Entity\RollSet
+     */
+    public function getRollSet()
+    {
+        return $this->rollSet;
+    }
 }

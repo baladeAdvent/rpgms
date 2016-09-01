@@ -1,0 +1,15 @@
+{% extends "RpgmsBundle:Default:base.html.twig" %}
+
+{% block body %}
+    Roll Views
+    {% for rollset in rollsets%}
+
+        <div class="row rollset">
+            <div class="col-xs-1">Player</div>
+            <div class="col-xs-1">Action</div>
+            <div class="col-xs-1">Results</div>
+        </div>
+        
+    {% endfor %}
+
+{% endblock %}

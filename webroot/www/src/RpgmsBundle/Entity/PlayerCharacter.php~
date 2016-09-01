@@ -55,6 +55,11 @@ class PlayerCharacter
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     private $user;
+    
+    /**
+     *  @ORM\OneToMany(targetEntity="RollSet", mappedBy="playerCharacter")
+     */
+    private $rollSets;
 
 
     /**
