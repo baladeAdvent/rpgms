@@ -5,9 +5,22 @@
     {% for rollset in rollsets%}
 
         <div class="row rollset">
-            <div class="col-xs-1">Player</div>
-            <div class="col-xs-1">Action</div>
-            <div class="col-xs-1">Results</div>
+            <div class="col-xs-2">Character</div>
+            <div class="col-xs-5">Action</div>
+            <div class="col-xs-5">Result</div>
+        </div>
+        
+        <div class="row rollset">
+            <div class="col-xs-2">{{ rollset.playerCharacter.name }}</div>
+            <div class="col-xs-5">{{ rollset.action }}</div>
+            <div class="col-xs-5">
+                ( 
+                    {% for roll in rollset.rolls %}
+                        {{ roll.result }}
+                    {% endfor %}
+                )
+                {{ rollset.result }}
+            </div>
         </div>
         
     {% endfor %}

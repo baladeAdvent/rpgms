@@ -24,6 +24,7 @@ class LoadTestRollSet extends AbstractFixture implements OrderedFixtureInterface
         $doctrine = $this->container->get('doctrine');
       
         $world = $doctrine->getRepository('RpgmsBundle\Entity\World')->findAll();
+        $playerCharacter = $doctrine->getRepository('RpgmsBundle\Entity\PlayerCharacter')->findAll();
         /*
          * Create a new rollset
          */
@@ -34,6 +35,7 @@ class LoadTestRollSet extends AbstractFixture implements OrderedFixtureInterface
        $rollSet->setDate(new \DateTime('NOW'));
        $rollSet->setWorld($world[0]);
        $rollSet->setResult(10);
+       $rollSet->setPlayerCharacter($playerCharacter[0]);
        
        /*
         * Create a new Roll to go into the rollset
