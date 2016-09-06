@@ -7,55 +7,61 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Entity\Dice;
 
 class LoadTestRollSet extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+
     /**
      * @var ContainerInterface
      */
     private $container;
-    
+
     public function load(ObjectManager $manager)
     {
         $doctrine = $this->container->get('doctrine');
-      
+
         $world = $doctrine->getRepository('RpgmsBundle\Entity\World')->findAll();
         $playerCharacter = $doctrine->getRepository('RpgmsBundle\Entity\PlayerCharacter')->findAll();
-        /*
-         * Create a new rollset
-         */
-       $rollSet = new RollSet();
-       $rollSet->setAction('testing action input...');
-       $rollSet->setbonus(5);
-       $rollSet->setPenalty(5);
-       $rollSet->setDate(new \DateTime('NOW'));
-       $rollSet->setWorld($world[0]);
-       $rollSet->setResult(10);
-       $rollSet->setPlayerCharacter($playerCharacter[0]);
-       
-       /*
-        * Create a new Roll to go into the rollset
-        */
-       $roll = new Roll();
-       $roll->setResult(5);
-       
-       $rollSet->addRoll($roll);
-       /*
-        * Retrieve Dice for test Rollset
-        */
-        $die = $doctrine->getRepository('RpgmsBundle\Entity\Dice')->findAll();
-        $dice = $die[0];
-       
-        $roll->setDice($dice);
-        $roll->setRollSet($rollSet);
         
-        $manager->persist($rollSet);
-        $manager->persist($roll);
-        
+        $diceService = $this->get('rpgms.dice_service');
+
+        for ($i = 0; $i < 5; $i++) {
+            /*
+             * Create a new rollset
+             */
+            $rollSet = new RollSet();
+            $rollSet->setAction( uniqid('testing action input...'));
+            $rollSet->setbonus(5);
+            $rollSet->setPenalty(5);
+            $rollSet->setDate(new \DateTime('NOW'));
+            $rollSet->setWorld($world[0]);
+            $rollSet->setResult(10);
+            $rollSet->setPlayerCharacter($playerCharacter[0]);
+
+            /*
+             * Create a new Roll to go into the rollset
+             */
+            $roll = new Roll();
+            $roll->setResult(5);
+
+            $rollSet->addRoll($roll);
+            /*
+             * Retrieve Dice for test Rollset
+             */
+            $die = $doctrine->getRepository('RpgmsBundle\Entity\Dice')->findAll();
+            $dice = $die[0];
+
+            $roll->setDice($dice);
+            $roll->setRollSet($rollSet);
+
+            $manager->persist($rollSet);
+            $manager->persist($roll);
+        }
+
+
         $manager->flush();
     }
 
@@ -70,5 +76,5 @@ class LoadTestRollSet extends AbstractFixture implements OrderedFixtureInterface
         // the lower the number, the sooner that this fixture is loaded
         return 5;
     }
-    
+
 }
