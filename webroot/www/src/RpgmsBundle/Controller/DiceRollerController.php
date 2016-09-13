@@ -26,7 +26,8 @@ class DiceRollerController extends Controller
         $diceService = $this->get('rpgms.dice_service');
         $worldService = $this->get('rpgms.world_service');
         $world = $worldService->getWorldByName('testWorld');
-
+        $playerCharacter = $worldService->getPlayerByName('testCharacter');
+        
         $dice = $world->getDice()->current();
 
         $rollSet = new RollSet;
@@ -38,13 +39,14 @@ class DiceRollerController extends Controller
 
         $form = $this->createForm(RollSetType::class, $rollSet, array(
             'world' => $world,
+            'playerCharacter' => $playerCharacter,
         ));
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $diceService->setRollSet($form, $world->getId());
+                $diceService->setRollSet($form, $world->getId(), $playerCharacter->getId());
             } else {
                 // Form is not valid
             }

@@ -2,23 +2,29 @@
 
 {% block body %}
     Roll Views
-    {% for rollset in rollsets%}
 
         <div class="row rollset">
-            <div class="col-xs-2">Character</div>
-            <div class="col-xs-5">Action</div>
-            <div class="col-xs-5">Result</div>
+            <div class="col-xs-2 rollset_col roll_label roll_character">Character</div>
+            <div class="col-xs-5 rollset_col roll_label roll_action">Action</div>
+            <div class="col-xs-5 rollset_col roll_label roll_result">Result</div>
         </div>
+    {% for rollset in rollsets%}
         
         <div class="row rollset">
-            <div class="col-xs-2">{{ rollset.playerCharacter.name }}</div>
-            <div class="col-xs-5">{{ rollset.action }}</div>
-            <div class="col-xs-5">
+            <div class="col-xs-2 rollset_col roll_character">{{ rollset.playerCharacter.name }}</div>
+            <div class="col-xs-5 rollset_col roll_action">{{ rollset.action }}</div>
+            <div class="col-xs-5 rollset_col roll_result">
                 ( 
                     {% for roll in rollset.rolls %}
                         {{ roll.result }}
                     {% endfor %}
                 )
+                {% if rollset.bonus > 0 %}
+                    (+{{ rollset.bonus }})
+                {% endif %}
+                {% if rollset.penalty > 0 %}
+                    (-{{ rollset.penalty }})
+                {% endif %}
                 {{ rollset.result }}
             </div>
         </div>

@@ -20,6 +20,7 @@ use RpgmsBundle\Entity\RollSet;
 use RpgmsBundle\Entity\Roll;
 use RpgmsBundle\Entity\Dice;
 use RpgmsBundle\Form\DataTransformer\WorldToIdTransformer;
+use RpgmsBundle\Form\DataTransformer\PlayerToIdTransformer;
 
 class RollSetType extends AbstractType
 {
@@ -65,6 +66,9 @@ class RollSetType extends AbstractType
         $builder->add('world', HiddenType::class, array(
             'data' => $options['world']->getId(),
         ));
+        $builder->add('playerCharacter', HiddenType::class, array(
+            'data' => $options['playerCharacter']->getId(),
+        ));
         $builder->add('save', SubmitType::class, array(
             'label' => 'Submit',
             'attr' => array('class' => 'btn btn-default btn-block')
@@ -72,6 +76,7 @@ class RollSetType extends AbstractType
         
         // More than meets the eye
         $builder->get('world')->addModelTransformer(new WorldToIdTransformer($this->manager));
+        $builder->get('playerCharacter')->addModelTransformer(new PlayerToIdTransformer($this->manager));
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -79,7 +84,8 @@ class RollSetType extends AbstractType
         $resolver->setDefaults(array(
             'allow_extra_fields' => true,
             'data_class' => 'RpgmsBundle\Entity\RollSet',
-            'world' => null
+            'world' => null,
+            'playerCharacter' => null
         ));
     }
 

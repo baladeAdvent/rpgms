@@ -37,5 +37,14 @@ class WorldService
         $world = $this->em->getRepository('RpgmsBundle:World')->findOneByName($name);
         return $world;
     }
+    
+    /**
+     *  This needs to be moved somewhere else and handle getting the current active "character" in some other way...
+     */
+    public function getPlayerByName($name)
+    {
+        $playerCharacter = $this->em->getRepository('RpgmsBundle:PlayerCharacter')->findOneByName($name);
+        return $playerCharacter;
+    }
 
 }
