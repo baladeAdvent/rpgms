@@ -14,21 +14,21 @@
             <div class="col-xs-2 rollset_col roll_character">{{ rollset.playerCharacter.name }}</div>
             <div class="col-xs-5 rollset_col roll_action">{{ rollset.action }}</div>
             <div class="col-xs-5 rollset_col roll_result">
-                ( 
-                    {% for roll in rollset.rolls %}
-                        {{ roll.result }}
-                    {% endfor %}
-                )
+                <span data-toggle="tooltip" data-placement="top" title="
+                    {{ rollset.rolls|join('+') }}
+                ">{{ rollset.result }}</span>
+                    
+                
                 {% if rollset.bonus > 0 %}
                     (+{{ rollset.bonus }})
                 {% endif %}
                 {% if rollset.penalty > 0 %}
                     (-{{ rollset.penalty }})
                 {% endif %}
-                {{ rollset.result }}
             </div>
         </div>
         
     {% endfor %}
-
+        
+    
 {% endblock %}
