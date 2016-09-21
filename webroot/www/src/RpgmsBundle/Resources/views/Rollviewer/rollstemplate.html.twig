@@ -1,0 +1,21 @@
+    {% for rollset in rollsets|reverse%}
+        
+        <div class="row rollset">
+            <div class="col-xs-2 rollset_col roll_character">{{ rollset.playerCharacter.name }}</div>
+            <div class="col-xs-5 rollset_col roll_action">{{ rollset.action }}</div>
+            <div class="col-xs-5 rollset_col roll_result">
+                <span data-toggle="tooltip" data-placement="top" title="
+                   
+                ">{{ rollset.result }}</span>
+                    
+                
+                {% if rollset.bonus > 0 %}
+                    (+{{ rollset.bonus }})
+                {% endif %}
+                {% if rollset.penalty > 0 %}
+                    (-{{ rollset.penalty }})
+                {% endif %}
+            </div>
+        </div>
+        
+    {% endfor %}

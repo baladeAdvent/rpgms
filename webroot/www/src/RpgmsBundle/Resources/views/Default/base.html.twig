@@ -13,21 +13,13 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
         {% block body %}{% endblock %}
         </div>
         
 
 
-    <script>
-        $(document).ready(function(){
-            $(function () {
-                console.log("tooltip: " + $('[data-toggle="tooltip"]').length);
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        });
-                
-    </script>
+
         
     </body>
 </html>

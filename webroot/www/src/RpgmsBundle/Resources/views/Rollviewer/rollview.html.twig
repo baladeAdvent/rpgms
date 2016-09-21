@@ -2,33 +2,50 @@
 
 {% block body %}
     Roll Views
-
         <div class="row rollset">
             <div class="col-xs-2 rollset_col roll_label roll_character">Character</div>
             <div class="col-xs-5 rollset_col roll_label roll_action">Action</div>
             <div class="col-xs-5 rollset_col roll_label roll_result">Result</div>
         </div>
-    {% for rollset in rollsets%}
-        
-        <div class="row rollset">
-            <div class="col-xs-2 rollset_col roll_character">{{ rollset.playerCharacter.name }}</div>
-            <div class="col-xs-5 rollset_col roll_action">{{ rollset.action }}</div>
-            <div class="col-xs-5 rollset_col roll_result">
-                <span data-toggle="tooltip" data-placement="top" title="
-                    {{ rollset.rolls|join('+') }}
-                ">{{ rollset.result }}</span>
-                    
-                
-                {% if rollset.bonus > 0 %}
-                    (+{{ rollset.bonus }})
-                {% endif %}
-                {% if rollset.penalty > 0 %}
-                    (-{{ rollset.penalty }})
-                {% endif %}
-            </div>
+        <div id="rollviewcontainer">
         </div>
-        
-    {% endfor %}
-        
     
+    <script>
+        jQuery(document).ready(function(){
+            var timerDelay = 5000;
+            var ajaxTimer = false;
+            var waiting = false;
+            
+            getRollView();
+            ajaxTimer = setInterval(getRollView, timerDelay);
+            
+            function getRollView(){
+                if(waiting === false)
+                {
+                    waiting = true;
+                    console.log('Poll server for results');
+                    var request = jQuery.ajax({
+                        url: "{{ path('getrolls', { 'count':'5', 'worldName': 'testWorld'}) }}",
+                        method: "GET",
+                        dataType: "html",
+                    });
+            
+                    request.done(function(resp){
+                        console.log(resp);
+                        
+                        waiting = false;
+                        jQuery('#rollviewcontainer').html(resp);
+                    });
+                    
+                    request.fail(function(jqXHR, resp){
+                        jQuery('#rollviewcontainer').html('UH OH! Something went wrong!');
+                    });
+                }else{
+                    console.log('Do nothing, wait for next timeOut');
+                }
+            }
+        });
+        
+    </script>
+        
 {% endblock %}
