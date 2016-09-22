@@ -13,7 +13,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return new Response('RPGMS Index');
-        #return $this->render('RpgmsBundle:Default:index.html.twig');
+        return $this->render('RpgmsBundle:FrontEnd:index.html.twig');
     }
 }

@@ -1,7 +1,7 @@
 {% extends "RpgmsBundle:Default:base.html.twig" %}
 
 {% block body %}
-    Roll Views
+    Roll Viewer
         <div class="row rollset">
             <div class="col-xs-2 rollset_col roll_label roll_character">Character</div>
             <div class="col-xs-5 rollset_col roll_label roll_action">Action</div>
@@ -38,7 +38,8 @@
                     });
                     
                     request.fail(function(jqXHR, resp){
-                        jQuery('#rollviewcontainer').html('UH OH! Something went wrong!');
+                        jQuery('#rollviewcontainer').html('UH OH! Something went wrong! Please refresh!');
+                        ajaxTimer = false;
                     });
                 }else{
                     console.log('Do nothing, wait for next timeOut');
