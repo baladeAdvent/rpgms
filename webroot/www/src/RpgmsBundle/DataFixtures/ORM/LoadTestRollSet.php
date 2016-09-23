@@ -26,7 +26,7 @@ class LoadTestRollSet extends AbstractFixture implements OrderedFixtureInterface
         $world = $doctrine->getRepository('RpgmsBundle\Entity\World')->findAll();
         $playerCharacter = $doctrine->getRepository('RpgmsBundle\Entity\PlayerCharacter')->findAll();
         
-        $diceService = $this->get('rpgms.dice_service');
+        $diceService = $this->container->get('rpgms.dice_service');
 
         for ($i = 0; $i < 5; $i++) {
             /*

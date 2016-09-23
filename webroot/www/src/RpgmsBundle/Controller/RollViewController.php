@@ -23,12 +23,12 @@ class RollViewController extends Controller
     }
        
     /**
-     *  @Route("/getrolls/", name="getrolls")
+     *  @Route("/getrolls/{worldName}", name="getrolls")
      */
-    public function viewAction(\Symfony\Component\HttpFoundation\Request $request)
+    public function viewAction(\Symfony\Component\HttpFoundation\Request $request, $worldName)
     {        
         $worldName = 'testWorld';
-        $worldName = $request->query->get('worldName');
+        $worldName = $worldName;
         
         $count = 5;
         $count = $request->query->get('count');
