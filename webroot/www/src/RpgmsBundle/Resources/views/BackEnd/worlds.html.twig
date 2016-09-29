@@ -1,0 +1,21 @@
+{% extends "RpgmsBundle:Default:base.html.twig" %}
+
+{% block body %}
+    {% include 'RpgmsBundle:BackEnd:dashboardHeader.html.twig' %}
+    rpgms - My Worlds
+    <div class="row">
+        <div class="col-xs-2">World Name:</div>
+        <div class="col-xs-2">Active:</div>
+        <div class="col-xs-2">System:</div>
+        <div class="col-xs-2"># of Players</div>
+        <div class="col-xs-2">Edit Button</div>
+        
+    </div>
+    <small>delete/create new world options</small>
+    <div class="row">
+        <div class="col-xs-2">New Character</div>
+        <div class="col-xs-2">Delete Character</div>
+        
+    </div>
+    
+{% endblock %}

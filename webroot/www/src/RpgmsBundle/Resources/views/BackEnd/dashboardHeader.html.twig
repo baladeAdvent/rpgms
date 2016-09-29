@@ -2,9 +2,13 @@
 <div class="row navigation">
     <div class="col-xs-12 navbar navbar-default" role="navigation">
         <ul class="nav navbar-nav">
-            <li role="presentation"><a href="{{ path('rpgms_user_profile') }}">Profile</a></li>
-            <li role="presentation"><a href="{{ path('rpgms_user_characters') }}">My Characters</a></li>
-            <li role="presentation"><a href="{{ path('rpgms_user_worlds') }}">My Worlds</a></li>
+            {% for link in navLinks %}
+                {% if link.route != app.request.attributes.get('_route') %}
+                    <li role="presentation"><a href="{{ path(link.route) }}">{{ link.name }}</a></li>
+                {% else %}
+                    <li role="presentation" class="active"><a href="{{ path(link.route) }}">{{ link.name }}</a></li>
+                {%endif%}
+            {% endfor %}
         </ul>
     </div>
 </div>

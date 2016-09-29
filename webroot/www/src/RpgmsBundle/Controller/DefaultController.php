@@ -29,7 +29,7 @@ class DefaultController extends Controller
 //        }
         
         return $this->render('RpgmsBundle:BackEnd:dashboard.html.twig', array(
-                'user' => $user
+                'navLinks' => $this->getBackEndLinks()
             ),
             null,
             null
@@ -41,7 +41,12 @@ class DefaultController extends Controller
      */
     public function profileAction()
     {
-        return $this->render('RpgmsBundle:BackEnd:dashboard.html.twig');
+        return $this->render('RpgmsBundle:BackEnd:profile.html.twig', array(
+                'navLinks' => $this->getBackEndLinks()
+            ),
+                null,
+                null
+        );
     }
     
     /**
@@ -49,7 +54,12 @@ class DefaultController extends Controller
      */
     public function playerCharacterAction()
     {
-        return $this->render('RpgmsBundle:BackEnd:dashboard.html.twig');
+        return $this->render('RpgmsBundle:BackEnd:characters.html.twig', array(
+                'navLinks' => $this->getBackEndLinks()
+            ),
+                null,
+                null
+        );
     }
     
     /**
@@ -57,6 +67,29 @@ class DefaultController extends Controller
      */
     public function worldsAction()
     {
-        return $this->render('RpgmsBundle:BackEnd:dashboard.html.twig');
+        return $this->render('RpgmsBundle:BackEnd:worlds.html.twig', array(
+                'navLinks' => $this->getBackEndLinks()
+            ),
+                null,
+                null
+        );
+    }
+    
+    protected function getBackEndLinks()
+    {
+        return array(
+            array(
+                'name' => 'Profile',
+                'route' =>'rpgms_user_profile',
+            ),
+            array(
+                'name' => 'My Characters',
+                'route' =>'rpgms_user_characters',
+            ),
+            array(
+                'name' => 'My Worlds',
+                'route' =>'rpgms_user_worlds',
+            ),
+        );
     }
 }

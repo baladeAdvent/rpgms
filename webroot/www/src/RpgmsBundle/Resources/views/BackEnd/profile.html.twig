@@ -1,0 +1,23 @@
+{% extends "RpgmsBundle:Default:base.html.twig" %}
+
+{% block body %}
+    {% include 'RpgmsBundle:BackEnd:dashboardHeader.html.twig' %}
+    rpgms - User Profile
+    <div class="row">
+        <div class="col-xs-2">Username:</div>
+        <div class="col-xs-10"><input type="text" value="{{app.user.getUsername}}" class="form-control"/> </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">Additional Fields..?:</div>
+        <div class="col-xs-10"><input type="text" value="" placeholder="something..." class="form-control"/> </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">Additional Profile/Details stuff...?:</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">Something:</div>
+        <div class="col-xs-10"><input type="text" value="" placeholder="something..." class="form-control"/> </div>
+    </div>
+    
+{% endblock %}
