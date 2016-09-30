@@ -36,6 +36,7 @@ class DefaultController extends Controller
         );
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/profile2", name="rpgms_user_profile")
      */
@@ -49,6 +50,7 @@ class DefaultController extends Controller
         );
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * @Route("/characters", name="rpgms_user_characters")
      */
@@ -63,6 +65,20 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/characters/create", name="rpgms_user_characters_create")
+     */
+    public function newPlayerCharacterAction()
+    {
+        return $this->render('RpgmsBundle:BackEnd:charactercreator.html.twig', array(
+                'navLinks' => $this->getBackEndLinks()
+            ),
+                null,
+                null
+        );
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
      * @Route("/worlds", name="rpgms_user_worlds")
      */
     public function worldsAction()
@@ -75,6 +91,20 @@ class DefaultController extends Controller
         );
     }
     
+    /**
+     * @Route("/worlds/create", name="rpgms_user_worlds_create")
+     */
+    public function newWorldAction()
+    {
+        return $this->render('RpgmsBundle:BackEnd:worldcreator.html.twig', array(
+                'navLinks' => $this->getBackEndLinks()
+            ),
+                null,
+                null
+        );
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function getBackEndLinks()
     {
         return array(

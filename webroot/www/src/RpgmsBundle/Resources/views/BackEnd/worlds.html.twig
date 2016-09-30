@@ -2,20 +2,33 @@
 
 {% block body %}
     {% include 'RpgmsBundle:BackEnd:dashboardHeader.html.twig' %}
-    rpgms - My Worlds
     <div class="row">
         <div class="col-xs-2">World Name:</div>
         <div class="col-xs-2">Active:</div>
         <div class="col-xs-2">System:</div>
         <div class="col-xs-2"># of Players</div>
-        <div class="col-xs-2">Edit Button</div>
-        
+        <div class="col-xs-2">
+            Tools:
+        </div>
     </div>
-    <small>delete/create new world options</small>
+    
+    <!-- Worlds go here -->
     <div class="row">
-        <div class="col-xs-2">New Character</div>
-        <div class="col-xs-2">Delete Character</div>
-        
+        <div class="col-xs-2">testWorld</div>
+        <div class="col-xs-2"><span class="label label-success">Active</span></div>
+        <div class="col-xs-2">D20</div>
+        <div class="col-xs-2">4</div>
+        <div class="col-xs-2">
+            <button class="btn btn-info">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+    <!-- Worlds go here -->
+    
+    <div class="row">
+        <div class="col-xs-2">
+            <a class="btn btn-primary" href="{{ path('rpgms_user_worlds_create') }}">Add New World</a>
+        </div>
     </div>
     
 {% endblock %}

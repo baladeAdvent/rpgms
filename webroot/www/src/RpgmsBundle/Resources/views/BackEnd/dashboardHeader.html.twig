@@ -1,7 +1,10 @@
 <!-- dashboardHeader.html.twig -->
 <div class="row navigation">
     <div class="col-xs-12 navbar navbar-default" role="navigation">
-        <ul class="nav navbar-nav">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">RPGMS</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
             {% for link in navLinks %}
                 {% if link.route != app.request.attributes.get('_route') %}
                     <li role="presentation"><a href="{{ path(link.route) }}">{{ link.name }}</a></li>
