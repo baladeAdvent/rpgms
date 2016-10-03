@@ -1,13 +1,13 @@
 <?php
-// src/RpgmsBundla/Form/DataTransformer/PlayerToIdTransformer.php
+// src/RpgmsBundla/Form/DataTransformer/UserToIdTransformer.php
 namespace RpgmsBundle\Form\DataTransformer;
 
-use RpgmsBundle\Entity\PlayerCharacter;
+use RpgmsBundle\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class PlayerToIdTransformer implements DataTransformerInterface
+class UserToIdTransformer implements DataTransformerInterface
 {
     private $manager;
 
@@ -17,18 +17,18 @@ class PlayerToIdTransformer implements DataTransformerInterface
     }
     
     /**
-     * Transforms an object (world) to a string (number).
+     * Transforms an object (user) to a string (number).
      *
-     * @param  World|null $world
+     * @param  User|null $user
      * @return string
      */
-    public function transform($player)
+    public function transform($user)
     {
-        if (null === $player) {
+        if (null === $user) {
             return '';
         }
 
-        return $player;
+        return $user;
     }
 
     /**
@@ -38,30 +38,30 @@ class PlayerToIdTransformer implements DataTransformerInterface
      * @return World|null
      * @throws TransformationFailedException if object (world) is not found.
      */
-    public function reverseTransform($characterId)
+    public function reverseTransform($userId)
     {
         // no issue number? It's optional, so that's ok
-        if (!$characterId) {
+        if (!$userId) {
             return;
         }
 
-        $playerCharacter = $this->manager
-            ->getRepository('RpgmsBundle:PlayerCharacter')
+        $user = $this->manager
+            ->getRepository('RpgmsBundle:User')
             // query for the world with this id
-            ->find($characterId)
+            ->find($userId)
         ;
 
-        if (null === $playerCharacter) {
+        if (null === $user) {
             // causes a validation error
             // this message is not shown to the user
             // see the invalid_message option
             throw new TransformationFailedException(sprintf(
                 'An issue with number "%s" does not exist!',
-                $characterId
+                $userId
             ));
         }
 
-        return $playerCharacter;
+        return $user;
     }
     public function getParent()
     {

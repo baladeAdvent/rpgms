@@ -38,6 +38,18 @@ class WorldService
         return $world;
     }
     
+    public function setNewWorld($form)
+    {
+        $world = $form->getData();
+        
+        $world->setDate(new \DateTime("NOW"));
+        $world->setActive(true);
+        
+        $this->em->persist($world);
+        $this->em->flush();
+        ladybug_dump($world);
+    }
+    
     /**
      *  This needs to be moved somewhere else and handle getting the current active "character" in some other way...
      */

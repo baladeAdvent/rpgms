@@ -39,6 +39,13 @@ class World
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
     
     ////////////
 
@@ -67,6 +74,13 @@ class World
      * @ORM\OneToMany(targetEntity="RollSet", mappedBy="world")
      */
     private $rollSets;
+    
+    // One World, One System
+    /**
+     * @ORM\ManyToOne(targetEntity="System")
+     * @ORM\JoinColumn(name="system", referencedColumnName="id")
+     */
+    private $system;
 
     /**
      * Constructor
@@ -158,6 +172,30 @@ class World
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return World
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 
     /**
@@ -286,8 +324,27 @@ class World
         return $this->rollSets;
     }
 
-    public function __toString()
+    /**
+     * Set system
+     *
+     * @param \RpgmsBundle\Entity\System $system
+     *
+     * @return World
+     */
+    public function setSystem(\RpgmsBundle\Entity\System $system = null)
     {
-        return $this->name;
+        $this->system = $system;
+
+        return $this;
+    }
+
+    /**
+     * Get system
+     *
+     * @return \RpgmsBundle\Entity\System
+     */
+    public function getSystem()
+    {
+        return $this->system;
     }
 }

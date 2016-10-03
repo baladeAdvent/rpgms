@@ -1,0 +1,45 @@
+<?php
+
+namespace RpgmsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * System
+ *
+ * @ORM\Table(name="system")
+ * @ORM\Entity(repositoryClass="RpgmsBundle\Repository\SystemRepository")
+ */
+class System
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    ///////////////////////////////////////////////////////////
+    // One World, One System
+    /**
+     * @ORM\OneToMany(targetEntity="World", mappedBy="system")
+     */
+    private $worlds;
+    
+    // One System, Many System Attributes
+    /**
+     * @ORM\OneToMany(targetEntity="SystemAttribute", mappedBy="system")
+     */
+    private $systemAttributes;
+    
+    
+}

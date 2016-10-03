@@ -5,6 +5,9 @@ namespace RpgmsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use RpgmsBundle\Form\Type\BackEnd\WorldType;
+use RpgmsBundle\Entity\World;
 
 class DefaultController extends Controller
 {
@@ -83,8 +86,12 @@ class DefaultController extends Controller
      */
     public function worldsAction()
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $worlds = $user->getWorlds()->toArray();
+        
         return $this->render('RpgmsBundle:BackEnd:worlds.html.twig', array(
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getBackEndLinks(),
+                'worlds' => $worlds
             ),
                 null,
                 null
@@ -94,9 +101,31 @@ class DefaultController extends Controller
     /**
      * @Route("/worlds/create", name="rpgms_user_worlds_create")
      */
-    public function newWorldAction()
+    public function newWorldAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $worldService = $this->get('rpgms.world_service');
+        
+        $world = new World();
+        $diceService = $this->get('rpgms.dice_service');
+        
+        $form = $this->createForm(WorldType::class, $world, array(
+            'user' => $user,
+        ));
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted()) {
+            if($form->isValid()) {
+                $worldService->setNewWorld($form);
+                return $this->redirectToRoute('rpgms_user_worlds', array());
+            }else{
+                //Form is not valid...
+            }
+        }
+        
         return $this->render('RpgmsBundle:BackEnd:worldcreator.html.twig', array(
+                'form' => $form->createView(),
                 'navLinks' => $this->getBackEndLinks()
             ),
                 null,

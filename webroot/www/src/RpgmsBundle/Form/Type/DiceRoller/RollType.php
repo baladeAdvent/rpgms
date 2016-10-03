@@ -30,19 +30,18 @@ class RollType extends AbstractType
     {
         $worldId = $options['world'];
         $builder->add('dice', EntityType::class, array(
-                    'class' => 'RpgmsBundle:Dice',
-                    'query_builder' => function (EntityRepository $er) use ($worldId){
-                        return $er->createQueryBuilder('d')
-                                ->where(':world MEMBER OF d.worlds')
-                                ->setParameter('world', $worldId)
-                                ->addOrderBy('d.maxRange', 'ASC');
-                    },
-                    'expanded' => true,
-                    'multiple' => false,
-                    'required' => true,
-                    'label' => false,
-                ))
-        ;
+            'class' => 'RpgmsBundle:Dice',
+            'query_builder' => function (EntityRepository $er) use ($worldId){
+                return $er->createQueryBuilder('d')
+                        ->where(':world MEMBER OF d.worlds')
+                        ->setParameter('world', $worldId)
+                        ->addOrderBy('d.maxRange', 'ASC');
+            },
+            'expanded' => true,
+            'multiple' => false,
+            'required' => true,
+            'label' => false,
+        ));
 
         
     }

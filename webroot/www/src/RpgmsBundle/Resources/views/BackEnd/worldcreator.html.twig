@@ -3,5 +3,36 @@
 {% block body %}
     {% include 'RpgmsBundle:BackEnd:dashboardHeader.html.twig' %}
 World Creator Page
-    
+
+{{ form_start(form) }}
+    <div class="row form-group">
+        <div class="col-xs-2">{{ form_label(form.name) }}</div>
+        <div class="col-xs-10">{{ form_widget(form.name) }}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-2">{{ form_label(form.description) }}</div>
+        <div class="col-xs-10">{{ form_widget(form.description) }}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-2"><label>World Dice Bag</label></div>
+        <div class="col-xs-10">
+            {% for dice in form.dice %}
+                <span>
+                {{ form_widget(dice) }} {{ form_label(dice) }}
+                </span>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-2"><label>System</label></div>
+        <div class="col-xs-10">
+                {{ form_widget(form.system) }}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-12">{{ form_widget(form.save) }}</div>
+    </div>
+        
+{{ form_end(form) }}
+ 
 {% endblock %}
