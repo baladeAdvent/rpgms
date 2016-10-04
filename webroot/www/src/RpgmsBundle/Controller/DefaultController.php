@@ -7,7 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use RpgmsBundle\Form\Type\BackEnd\WorldType;
+use RpgmsBundle\Form\Type\BackEnd\PlayerCharacterType;
 use RpgmsBundle\Entity\World;
+use RpgmsBundle\Entity\PlayerCharacter;
 
 class DefaultController extends Controller
 {
@@ -70,9 +72,29 @@ class DefaultController extends Controller
     /**
      * @Route("/characters/create", name="rpgms_user_characters_create")
      */
-    public function newPlayerCharacterAction()
+    public function newPlayerCharacterAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $playerCharacter = new PlayerCharacter();
+        $diceService = $this->get('rpgms.dice_service');
+        
+        $form = $this->createForm(PlayerCharacterType::class, $playerCharacter, array(
+            'user' => $user,
+        ));
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted()) {
+            if($form->isValid()) {
+                ladybug_dump($form);
+            }else{
+                //Form is not valid...
+            }
+        }
+        
         return $this->render('RpgmsBundle:BackEnd:charactercreator.html.twig', array(
+                'form' => $form->createView(),
                 'navLinks' => $this->getBackEndLinks()
             ),
                 null,

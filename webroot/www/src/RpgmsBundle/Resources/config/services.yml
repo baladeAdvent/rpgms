@@ -23,3 +23,9 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type }
+        
+    app.form.type.playercharacter:
+        class: RpgmsBundle\Form\Type\BackEnd\PlayerCharacterType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
