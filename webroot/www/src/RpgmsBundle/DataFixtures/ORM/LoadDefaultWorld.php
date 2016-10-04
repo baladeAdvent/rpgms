@@ -31,6 +31,7 @@ class LoadDefaultWorld extends AbstractFixture implements OrderedFixtureInterfac
         $world->setName('testWorld');
         $world->setDescription('sample world for testing');
         $world->setDate(new \DateTime('NOW'));
+        $world->setActive(true);
         
         $x = 0;
         foreach($die as $dice){

@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 use RpgmsBundle\Form\Type\BackEnd\WorldType;
 use RpgmsBundle\Form\Type\BackEnd\PlayerCharacterType;
 use RpgmsBundle\Entity\World;
@@ -26,15 +28,8 @@ class DefaultController extends Controller
      */
     public function dashboardAction()
     {
-//        $user = $this->getUser();
-        $user = 'testUser';
-//        
-//        if (!is_object($user) || !$user instanceof UserInterface) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
-        
         return $this->render('RpgmsBundle:BackEnd:dashboard.html.twig', array(
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getDashboardLinks()
             ),
             null,
             null
@@ -43,12 +38,12 @@ class DefaultController extends Controller
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/profile2", name="rpgms_user_profile")
+     * @Route("/dashboard/profile", name="rpgms_user_profile")
      */
     public function profileAction()
     {
         return $this->render('RpgmsBundle:BackEnd:profile.html.twig', array(
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getDashboardLinks()
             ),
                 null,
                 null
@@ -57,12 +52,12 @@ class DefaultController extends Controller
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/characters", name="rpgms_user_characters")
+     * @Route("/dashboard/characters", name="rpgms_user_characters")
      */
     public function playerCharacterAction()
     {
         return $this->render('RpgmsBundle:BackEnd:characters.html.twig', array(
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getDashboardLinks()
             ),
                 null,
                 null
@@ -70,7 +65,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/characters/create", name="rpgms_user_characters_create")
+     * @Route("/dashboard/characters/create", name="rpgms_user_characters_create")
      */
     public function newPlayerCharacterAction(Request $request)
     {
@@ -95,7 +90,7 @@ class DefaultController extends Controller
         
         return $this->render('RpgmsBundle:BackEnd:charactercreator.html.twig', array(
                 'form' => $form->createView(),
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getDashboardLinks()
             ),
                 null,
                 null
@@ -104,7 +99,7 @@ class DefaultController extends Controller
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * @Route("/worlds", name="rpgms_user_worlds")
+     * @Route("/dashboard/worlds", name="rpgms_user_worlds")
      */
     public function worldsAction()
     {
@@ -112,7 +107,7 @@ class DefaultController extends Controller
         $worlds = $user->getWorlds()->toArray();
         
         return $this->render('RpgmsBundle:BackEnd:worlds.html.twig', array(
-                'navLinks' => $this->getBackEndLinks(),
+                'navLinks' => $this->getDashboardLinks(),
                 'worlds' => $worlds
             ),
                 null,
@@ -121,7 +116,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/worlds/create", name="rpgms_user_worlds_create")
+     * @Route("/dashboard/worlds/create", name="rpgms_user_worlds_create")
      */
     public function newWorldAction(Request $request)
     {
@@ -148,7 +143,7 @@ class DefaultController extends Controller
         
         return $this->render('RpgmsBundle:BackEnd:worldcreator.html.twig', array(
                 'form' => $form->createView(),
-                'navLinks' => $this->getBackEndLinks()
+                'navLinks' => $this->getDashboardLinks()
             ),
                 null,
                 null
@@ -156,7 +151,7 @@ class DefaultController extends Controller
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected function getBackEndLinks()
+    protected function getDashboardLinks()
     {
         return array(
             array(
